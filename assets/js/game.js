@@ -25,7 +25,7 @@ const elements = {
 const utils = {
     redirect: (path) => window.location.href = path,
     
-    handleBackNavigation: (element, path = './index.html') => {
+    handleBackNavigation: (element, path = '../index.html') => {
         if (element) {
             element.addEventListener('click', () => utils.redirect(path));
         }
@@ -34,7 +34,7 @@ const utils = {
     setupCategoryButton: (button, category) => {
         if (button) {
             button.addEventListener('click', () => 
-                utils.redirect(`./pages/${category}.html`));
+                utils.redirect(`../pages/${category}.html`));
         }
     }
 };
@@ -208,7 +208,7 @@ class MenuSystem {
         if (quitBtn) {
             quitBtn.addEventListener('click', () => {
                 showConfirmBox('Are you sure you want to quit?',
-                    () => window.location.href = './index.html',
+                    () => window.location.href = '../index.html',
                     () => this.hideDropdown()
                 );
             });
@@ -247,9 +247,12 @@ document.addEventListener('DOMContentLoaded', () => {
     new BackgroundAnimation();
     
     // Setup navigation buttons
-    utils.handleBackNavigation(elements.buttons.back);
-    utils.handleBackNavigation(elements.buttons.back2);
-    utils.handleBackNavigation(elements.buttons.back3, '../scrabbleMode.html');
+    const currentPath = window.location.pathname;
+    const isInPagesDir = currentPath.includes('/pages/');
+    
+    utils.handleBackNavigation(elements.buttons.back, isInPagesDir ? '../index.html' : './index.html');
+    utils.handleBackNavigation(elements.buttons.back2, isInPagesDir ? '../index.html' : './index.html');
+    utils.handleBackNavigation(elements.buttons.back3, isInPagesDir ? '../scrabblemode.html' : './scrabblemode.html');
     
     // Setup category buttons
     const categories = elements.buttons.categories;
