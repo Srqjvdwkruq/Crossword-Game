@@ -35,7 +35,11 @@ const utils = {
         if (button) {
             button.addEventListener('click', () => {
                 const category = button.getAttribute('data-category');
-                utils.redirect(`./pages/${category}.html`);
+                // ตรวจสอบ URL ปัจจุบัน
+                const currentPath = window.location.pathname;
+                // กำหนด path ให้ถูกต้องตามตำแหน่งปัจจุบัน
+                const basePath = currentPath.includes('/pages/') ? '../pages/' : './pages/';
+                utils.redirect(`${basePath}${category}.html`);
             });
         }
     }
@@ -248,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize background animation
     new BackgroundAnimation();
     
-    // Setup navigation buttons
+    // Setup navigation buttons with proper paths
     const currentPath = window.location.pathname;
     const isInPagesDir = currentPath.includes('/pages/');
     
