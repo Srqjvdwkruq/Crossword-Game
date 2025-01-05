@@ -11,7 +11,7 @@ const elements = {
         back2: document.getElementById('backBtn2'), 
         back3: document.getElementById('backBtn3'),
         //info: document.getElementById('infoBtn'),
-        categories: {
+        category: {
             animal: document.getElementById('animalBtn'),
             vegetable: document.getElementById('vegetableBtn'),
             fruit: document.getElementById('fruitBtn'),
@@ -35,11 +35,18 @@ const utils = {
         if (button) {
             button.addEventListener('click', () => {
                 const category = button.getAttribute('data-category');
-                // ตรวจสอบ URL ปัจจุบัน
-                const currentPath = window.location.pathname;
-                // กำหนด path ให้ถูกต้องตามตำแหน่งปัจจุบัน
-                const basePath = currentPath.includes('/pages/') ? '../pages/' : './pages/';
-                utils.redirect(`${basePath}${category}.html`);
+                // Check if running on GitHub Pages
+                const isGitHubPages = window.location.hostname.includes('github.io');
+                // Get repository name from URL if on GitHub Pages
+                const repoName = isGitHubPages ? window.location.pathname.split('/')[1] : '';
+                
+                if (isGitHubPages) {
+                    // GitHub Pages path
+                    utils.redirect(`/${repoName}/pages/${category}.html`);
+                } else {
+                    // Local development path
+                    utils.redirect(`./pages/${category}.html`);
+                }
             });
         }
     }
