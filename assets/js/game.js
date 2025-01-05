@@ -35,16 +35,12 @@ const utils = {
         if (button) {
             button.addEventListener('click', () => {
                 const category = button.getAttribute('data-category');
-                // Check if running on GitHub Pages
                 const isGitHubPages = window.location.hostname.includes('github.io');
-                // Get repository name from URL if on GitHub Pages
                 const repoName = isGitHubPages ? window.location.pathname.split('/')[1] : '';
                 
                 if (isGitHubPages) {
-                    // GitHub Pages path
                     utils.redirect(`/${repoName}/pages/${category}.html`);
                 } else {
-                    // Local development path
                     utils.redirect(`./pages/${category}.html`);
                 }
             });

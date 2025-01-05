@@ -28,6 +28,7 @@ body {
     overflow: auto;
 }
 
+/* ========== Main Screen ========== */
 .title {
     text-shadow: 2px 2px 4px var(--shadow-color);
     margin-bottom: 20px;
@@ -45,7 +46,6 @@ body {
     margin: 1rem 1rem 100px 1rem;
 }
 
-/* Screen Styles */
 .start-screen {
     position: relative;
     display: flex;
@@ -210,7 +210,7 @@ button:active {
 }
 
 
-/* Confirm Box Styles */
+/* Global Confirm Box Styles */
 .confirm-box {
     display: none;
     position: absolute;
@@ -285,14 +285,61 @@ button:active {
     box-shadow: 0 5px 0 var(--primary-dark2);
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 99999;
-    justify-content: center;
+/* scrabblemode.html */
+#scrabbleModeContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1800px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 0;
+}
+
+.scrabble-title {
+    text-align: center;
+    text-shadow: 2px 2px 4px var(--shadow-color);
+    font-size: calc(4vh + 2vw);
+    color: #fff;
+    margin: 0 0 20px 0;
+    z-index: 1;
+}
+.scrabbleSingle-mode,
+.scrabbleMulti-mode {
+    font-size: 22px;
+    width: 280px;
+    height: 60px;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.scrabbleMulti-mode[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #c5c5c5;
+    box-shadow: 0 4px 0 #888;
+}
+
+.back-btn2 {
+    font-size: 2rem;
+    width: 280px;
+    height: 60px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    background: var(--primary-color2);
+    box-shadow: 0 4px 0 var(--primary-dark2);
+}
+
+.back-btn2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 var(--primary-dark2);
 }

@@ -38,15 +38,15 @@ class BaseGame {
         // Add word mapping
         this.wordMap = {};  // Will store word coordinates
 
-        // เพิ่ม grid configuration
+        // Add  grid configuration
         this.gridConfig = {
             rows: 0,
             cols: 0,
-            words: [], // เก็บข้อมูลคำทั้งหมด
-            directions: {} // เก็บทิศทางของแต่ละคำ
+            words: [], // Keep data for each words
+            directions: {} // Keep direction for each word
         };
 
-        // เพิ่ม button elements
+        // Add button elements
         this.clearAllBtn = document.getElementById('clearAllBtn');
         this.setupButtons();
 
@@ -60,8 +60,8 @@ class BaseGame {
         this.checkAnswerBtn = document.getElementById('checkansBtn');
         this.setupCheckAnswer();
 
-        this.isCheckingAnswer = false;  // เพิ่มตัวแปรเพื่อระบุว่ากำลังตรวจคำตอบ
-        this.confirmAction = null; // เพิ่มตัวแปรเก็บ action ที่จะทำหลังกด confirm
+        this.isCheckingAnswer = false;
+        this.confirmAction = null; 
     }
 
     // Core utility functions
@@ -174,7 +174,7 @@ class BaseGame {
         }
     }
     
-
+    // Get the next cell based on current direction
     findNextCell() {
         const td = this.selectedCell;
         const direction = this.currentDirection;
@@ -225,7 +225,6 @@ class BaseGame {
                     break;
             }
         } else {
-            // ใช้ logic เดิมสำหรับช่องที่ไม่ใช่จุดเริ่มต้น
             const hasHorizontal = this.checkHorizontalWord(cell.parentElement, cell.cellIndex);
             const hasVertical = this.checkVerticalWord(cell.closest('table'), cell.parentElement.rowIndex, cell.cellIndex);
             
@@ -237,7 +236,6 @@ class BaseGame {
     determineWordDirection(cell) {
         const clueNum = parseInt(cell.dataset.clue);
         
-        // สำหรับคำอื่นๆ
         const hasHorizontal = this.checkHorizontalWord(cell.parentElement, cell.cellIndex);
         const hasVertical = this.checkVerticalWord(cell.closest('table'), cell.parentElement.rowIndex, cell.cellIndex);
         
@@ -248,11 +246,11 @@ class BaseGame {
     }
 
     checkHorizontalWord(row, cellIndex) {
-        // ตรวจสอบช่องซ้าย
+        // Check left cell
         const prevCell = row.children[cellIndex - 1];
         const hasLeftCell = prevCell && prevCell.classList.contains('box2');
         
-        // ตรวจสอบช่องขวา
+        // Check right cell
         const nextCell = row.children[cellIndex + 1];
         const hasRightCell = nextCell && nextCell.classList.contains('box2');
         
@@ -260,12 +258,12 @@ class BaseGame {
     }
 
     checkVerticalWord(table, rowIndex, cellIndex) {
-        // ตรวจสอบช่องด้านบน
+        // Check cell above
         const aboveRow = table.rows[rowIndex - 1];
         const hasAboveCell = aboveRow && 
             aboveRow.children[cellIndex].classList.contains('box2');
         
-        // ตรวจสอบช่องด้านล่าง
+        // Check cell below
         const belowRow = table.rows[rowIndex + 1];
         const hasBelowCell = belowRow && 
             belowRow.children[cellIndex].classList.contains('box2');
@@ -297,12 +295,12 @@ class BaseGame {
         const cellIndex = cell.cellIndex;
         let rowIndex = cell.parentElement.rowIndex;
         
-        // หาจุดเริ่มต้นของคำในแนวตั้ง
+        // Find the beginning of a word vertically
         while (rowIndex > 0 && rows[rowIndex - 1].cells[cellIndex].classList.contains('box2')) {
             rowIndex--;
         }
         
-        // ไฮไลท์ทุกช่องในแนวตั้ง
+        // Highlight all vertical cells
         while (rowIndex < rows.length && rows[rowIndex].cells[cellIndex].classList.contains('box2')) {
             const currentCell = rows[rowIndex].cells[cellIndex];
             if (currentCell !== cell) {
@@ -352,14 +350,12 @@ class BaseGame {
         return nextRow && nextRow.children[cellIndex].classList.contains('box2');
     }
 
-    // เพิ่มเมธอดสำหรับการกำหนดค่าตาราง
     setGridConfig(config) {
         this.gridConfig = {
             ...this.gridConfig,
             ...config
         };
         
-        // สร้างข้อมูลทิศทางของคำ
         this.initializeWordDirections();
     }
 
@@ -370,7 +366,6 @@ class BaseGame {
     }
 
     setupButtons() {
-        // เพิ่ม event listener สำหรับ Clear All button
         this.clearAllBtn.addEventListener('click', () => this.handleClearAll());
     }
 
@@ -378,8 +373,8 @@ class BaseGame {
         this.confirmYes.addEventListener('click', () => {
             this.hideConfirmBox();
             if (this.confirmAction) {
-                this.confirmAction(); // เรียกใช้ฟังก์ชันที่เก็บไว้
-                this.confirmAction = null; // รีเซ็ตค่า
+                this.confirmAction(); 
+                this.confirmAction = null;
             }
         });
         
@@ -412,7 +407,7 @@ class BaseGame {
     }
 
     executeClearAll() {
-        // ล้างทุกช่อง
+        // Clear all cells
         document.querySelectorAll('.box2').forEach(cell => {
             const span = cell.querySelector('span');
             if (span) {
@@ -422,21 +417,21 @@ class BaseGame {
             cell.removeAttribute('readonly');
         });
 
-        // รีเซ็ตสถานะเกม
+        // Reset gmae state
         this.score = 0;
         this.completedWords = 0;
         this.mistakes = 0;
 
-        // ล้างการไฮไลท์และการเลือก
+        // Clear selected cell
         this.selectedCell = null;
         this.selectedClueNumber = null;
 
-        // ล้างภาพคำใบ้
+        // Clear hint box
         if (this.hintBox) {
             this.hintBox.style.backgroundImage = '';
         }
 
-        // เริ่มการจับเวลาใหม่ถ้าก่อนหน้านี้กำลังเล่นอยู่
+        // Restart the timer if it was playing previously.
         if (this.wasPlaying) {
             this.gameState = CONFIG.GAME_STATES.PLAYING;
         }
@@ -463,7 +458,7 @@ class BaseGame {
     }
 
     checkAnswers() {
-        // หยุดเวลา
+        // Stop time
         clearInterval(this.timerInterval);
         
         let correctCount = 0;
@@ -487,7 +482,7 @@ class BaseGame {
             if (isCorrect) correctCount++;
         });
 
-        // คำนวณคะแนนและแสดงผล
+        // Calculate score
         const score = Math.round((correctCount / totalWords) * 100);
         this.showConfirmBox(
             `Time: ${finalTime}\n` +
@@ -495,12 +490,12 @@ class BaseGame {
             `Correct words: ${correctCount}/${totalWords}`
         );
 
-        // รีเซ็ตเวลา
+        // Reset time
         this.timerDisplay.textContent = '00:00';
         this.gameState = CONFIG.GAME_STATES.COMPLETED;
     }
 
-    // เพิ่มฟังก์ชันสำหรับเริ่มเกมใหม่
+    // Add fuction to reset game
     resetGame() {
         this.executeClearAll();
         this.startTimer();

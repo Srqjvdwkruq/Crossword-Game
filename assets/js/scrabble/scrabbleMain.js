@@ -59,7 +59,6 @@ export const LETTER_DATA = {
     'Z': { score: 10, count: 1 }
 };
 
-// เพิ่มตัวแปร INITIAL_LETTER_DATA เพื่อเก็บค่าเริ่มต้น
 export const INITIAL_LETTER_DATA = {
     '' : { score: 0, count: 2 },  
     'A': { score: 1, count: 9 },
@@ -141,7 +140,7 @@ function validateGameStart() {
     if (totalLetters !== 100) {
         console.error(`Invalid letter count (${totalLetters}), resetting game...`);
         resetLetterData();
-        validateTileBagTotal(); // ตรวจสอบหลังรีเซ็ต
+        validateTileBagTotal(); // Check total after reset
         return false;
     }
     return true;
@@ -152,7 +151,7 @@ function validateLetterAvailability() {
     const totalLetters = Object.values(LETTER_DATA)
         .reduce((sum, {count}) => sum + count, 0);
     
-    if (totalLetters < 14) { // ต้องมีพอสำหรับทั้ง player และ bot
+    if (totalLetters < 14) { // Must have enough letters for player and bot
         console.error(`Not enough letters available: ${totalLetters}`);
         return false;
     }
@@ -269,14 +268,14 @@ class WordValidator {
 
     async loadGitHubDictionary() {
         try {
-            // ใช้ raw content URL จาก GitHub
+            // Use raw content URL from GitHub
             const response = await fetch('https://raw.githubusercontent.com/raun/Scrabble/master/words.txt');
             if (!response.ok) {
                 throw new Error('Failed to load GitHub dictionary');
             }
             
             const text = await response.text();
-            // แยกคำด้วย newline และเพิ่มเข้า Set
+            // Separate words with newline and add to Set
             const words = text.split('\n')
                 .map(word => word.trim().toUpperCase())
                 .filter(word => word.length > 0);
@@ -284,7 +283,7 @@ class WordValidator {
             this.dictionary = new Set(words);
             console.log(`GitHub dictionary loaded with ${this.dictionary.size} words`);
 
-            // สำรองข้อมูลลง localStorage
+            // Backup data localStorage
             try {
                 localStorage.setItem('scrabbleDictionary', JSON.stringify(Array.from(this.dictionary)));
             } catch (e) {
@@ -293,14 +292,14 @@ class WordValidator {
 
         } catch (error) {
             console.error('Error loading GitHub dictionary:', error);
-            // ถ้าโหลดไม่สำเร็จ ลองใช้ข้อมูลจาก localStorage
+            // If looding not success use data from localStorage
             try {
                 const cachedDict = localStorage.getItem('scrabbleDictionary');
                 if (cachedDict) {
                     this.dictionary = new Set(JSON.parse(cachedDict));
                     console.log(`Loaded ${this.dictionary.size} words from cache`);
                 } else {
-                    // ถ้าไม่มีข้อมูลใน cache ให้ใช้ fallback dictionary
+                    // If there is no data in the cache, use the fallback dictionary.
                     this.loadFallbackDictionary();
                 }
             } catch (e) {
@@ -396,7 +395,6 @@ class WordValidator {
     }
 }
 
-
 //Core Classes
 class LetterManager {
     constructor() {
@@ -426,7 +424,7 @@ class LetterManager {
     
             if (availableLetters.length === 0) {
                 console.log('No letters available in the bag.');
-                validateTileBagTotal(); // ตรวจสอบว่าจำนวนถูกต้อง
+                validateTileBagTotal(); // Check total is correct
                 return null;
             }
     
@@ -436,8 +434,8 @@ class LetterManager {
             if (LETTER_DATA[selectedLetter].count > 0) {
                 LETTER_DATA[selectedLetter].count--;
                 console.log(`Letter ${selectedLetter} removed. Remaining:`, LETTER_DATA[selectedLetter].count);
-                updateTileBagCounts(); // อัปเดตการแสดงผล
-                validateTileBagTotal(); // ตรวจสอบหลังการแจก
+                updateTileBagCounts();
+                validateTileBagTotal(); 
                 return selectedLetter;
             }
     
@@ -493,16 +491,16 @@ class ScrabbleBoard {
     }
 
     setSpecialCell(cell, row, col) {
-        // Center Position - ไม่มีคะแนนพิเศษ
+        // Center Position
         if (row === 7 && col === 7) {
             cell.classList.add('start');
             const star = document.createElement('i');
             star.className = 'fa-solid fa-star';
             cell.appendChild(star);
-            return; // ออกจากฟังก์ชันทันทีสำหรับช่องกลาง
+            return;
         }
 
-        // Configure special squares - แยกการตั้งค่าช่องพิเศษออกจากช่องกลาง
+        // Configure special squares
         if (SPECIAL_SQUARES.TW.some(([r, c]) => r === row && c === col)) {
             cell.classList.add('tw');
             cell.dataset.multiplier = 'TW';
@@ -558,7 +556,7 @@ class ScrabbleBoard {
                 existingTile.classList.contains('bot-played')) {
                 return false;
             }
-            // ถ้ามี tile ที่ไม่ได้ submit ให้ลบออกก่อน
+            // If have tile, remove it
             cell.removeChild(existingTile);
         }
 
@@ -566,13 +564,13 @@ class ScrabbleBoard {
         if (sourceTile) {
             const sourceCell = sourceTile.closest('.cell');
             if (sourceCell) {
-                // ลบข้อมูลจาก placedTiles และ letterRack
+                // Delete data from placedTiles and letterRack
                 const sourceCellId = sourceCell.dataset.cellId;
                 this.letterRack.placedLetters.delete(sourceCellId);
                 this.placedTiles.delete(`${sourceCell.dataset.row}-${sourceCell.dataset.col}`);
                 sourceTile.remove();
 
-                // คืนดาวให้ช่องกลางถ้าจำเป็น
+                // Return star if it's center cell
                 if (sourceCell.classList.contains('start') && !sourceCell.querySelector('.fa-star')) {
                     const star = document.createElement('i');
                     star.className = 'fa-solid fa-star';
@@ -598,7 +596,7 @@ class ScrabbleBoard {
         
         // Add drag events
         tile.addEventListener('dragstart', (e) => {
-            // ถ้าเป็น tile ที่ submit แล้ว ไม่อนุญาตให้ลาก
+            // If tile is submitted. Not allow to drag
             if (tile.classList.contains('submitted') || tile.classList.contains('bot-played')) {
                 e.preventDefault();
                 return;
@@ -612,14 +610,14 @@ class ScrabbleBoard {
 
         tile.addEventListener('dragend', (e) => {
             if (e.dataTransfer.dropEffect === 'none') {
-                // ถ้าลากไปที่ไม่สามารถวางได้ ให้ย้ายกลับตำแหน่งเดิม
+                // If you drag to a place where you cannot place it, move it back to the original position.
                 const lastPos = tile.dataset.lastPosition;
                 if (lastPos) {
                     const [lastRow, lastCol] = lastPos.split('-');
                     const lastCell = this.queryCell(lastRow, lastCol);
                     if (lastCell && !lastCell.querySelector('.tile')) {
                         lastCell.appendChild(tile);
-                        // อัพเดทข้อมูลการวาง
+                        // Updat data dragged tile
                         this.letterRack.placedLetters.set(lastCell.dataset.cellId, letter);
                         this.placedTiles.set(lastPos, letter);
                     }
@@ -646,7 +644,7 @@ class ScrabbleBoard {
     }
 
     validateWordAtCell(cell, tile, letter) {
-        // ตรวจหาคำที่เกิดจากการวางตัวอักษร
+        // Check word validation
         const words = this.findWordsFromCell(cell, letter);
         words.forEach(word => {
             if (word.length > 1) {
@@ -661,18 +659,18 @@ class ScrabbleBoard {
         let col = startCol;
         let length = 0;
         
-        // ตรวจสอบข้างเคียงในทิศทางตรงข้าม
+        // Check the side in the opposite direction
         const checkAdjacent = (r, c) => {
-            if (deltaRow === 0) { // แนวนอน - ตรวจบนล่าง
+            if (deltaRow === 0) { // Horizontal - Check above and below
                 return (r > 0 && this.hasLetterAt(r - 1, c)) ||
                        (r < GRID_SIZE - 1 && this.hasLetterAt(r + 1, c));
-            } else { // แนวตั้ง - ตรวจซ้ายขวา
+            } else { // Vertical - Check left and right
                 return (c > 0 && this.hasLetterAt(r, c - 1)) ||
                        (c < GRID_SIZE - 1 && this.hasLetterAt(r, c + 1));
             }
         };
 
-        // อ่านคำ
+        // Read word
         while (utils.isValidPosition(row, col)) {
             const letter = this.getLetterAt(row, col);
             if (!letter) break;
@@ -684,12 +682,12 @@ class ScrabbleBoard {
             col += deltaCol;
         }
 
-        // ถ้าเป็นตัวเดียว ตรวจสอบว่ามีตัวอักษรติดกันหรือไม่
+        // If it is a single tile, check if there are adjacent letters.
         if (length === 1) {
             return checkAdjacent(startRow, startCol) ? word : null;
         }
 
-        // ถ้ามีมากกว่า 1 ตัว ให้คืนค่าคำนั้นเลย
+        // If have more 1 tile return word
         return length >= 2 ? word : null;
     }
 
@@ -700,11 +698,11 @@ class ScrabbleBoard {
         this.placedTiles.set(`${row}-${col}`, letter);
         const words = [];
 
-        // หาจุดเริ่มต้นของคำแนวนอน
+        // Find the starting point of the horizantal word
         let startCol = col;
         while (startCol > 0 && this.hasLetterAt(row, startCol - 1)) startCol--;
         
-        // ตรวจสอบว่ามีคำแนวนอนที่ยาวกว่า 1 ตัวหรือไม่
+        // Check if there is a harizontal word longer than 1
         let horizontalWord = '';
         let horizontalCells = [];
         let currentCol = startCol;
@@ -723,11 +721,11 @@ class ScrabbleBoard {
             });
         }
 
-        // หาจุดเริ่มต้นของคำแนวตั้ง
+        // Find the starting point of the vertical word
         let startRow = row;
         while (startRow > 0 && this.hasLetterAt(startRow - 1, col)) startRow--;
         
-        // ตรวจสอบว่ามีคำแนวตั้งที่ยาวกว่า 1 ตัวหรือไม่
+        // Check if there is a vertical word longer than 1
         let verticalWord = '';
         let verticalCells = [];
         let currentRow = startRow;
@@ -787,12 +785,12 @@ class ScrabbleBoard {
         const cells = document.querySelectorAll('.scrabble-grid .cell');
         
         cells.forEach(cell => {
-            // จัดการ dragover
+            // Manage dragover
             cell.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 const tile = cell.querySelector('.tile');
                 
-                // ถ้ามี tile ที่ submit แล้ว หรือเป็น bot tile ให้ยกเลิกการ drop
+                // If have tile and it's submitted or bot-tile, not allow to drop
                 if (tile && (tile.classList.contains('submitted') || tile.classList.contains('bot-played'))) {
                     e.dataTransfer.dropEffect = 'none';
                     return;
@@ -804,18 +802,18 @@ class ScrabbleBoard {
                 }
             });
 
-            // จัดการ dragleave
+            // Manage dragleave
             cell.addEventListener('dragleave', () => {
                 cell.classList.remove('drag-over');
             });
 
-            // จัดการ drop
+            // Manage drop
             cell.addEventListener('drop', (e) => {
                 e.preventDefault();
                 cell.classList.remove('drag-over');
 
                 const existingTile = cell.querySelector('.tile');
-                // ตรวจสอบว่ามี tile อยู่แล้วหรือไม่ และเป็น tile ที่ submit แล้วหรือไม่
+                // Check if have tile and it's submitted or bot-tile, not allow to drop
                 if (existingTile && (
                     existingTile.classList.contains('submitted') || 
                     existingTile.classList.contains('bot-played')
@@ -829,16 +827,16 @@ class ScrabbleBoard {
                     const sourceTile = document.getElementById(sourceId);
                     
                     if (sourceTile) {
-                        // ลบข้อมูลตำแหน่งเดิมก่อนย้าย
+                        // Delete original position data
                         const oldCell = sourceTile.closest('.cell');
                         if (oldCell) {
-                            // ลบข้อมูลจาก placedTiles และ letterRack
+                            // Delete data from placedTiles and letterRack
                             this.placedTiles.delete(`${oldCell.dataset.row}-${oldCell.dataset.col}`);
                             if (this.letterRack.placedLetters) {
                                 this.letterRack.placedLetters.delete(oldCell.dataset.cellId);
                             }
                             
-                            // คืนดาวให้ช่องกลางถ้าจำเป็น
+                            // Return star if it's center
                             if (oldCell.classList.contains('start')) {
                                 const star = document.createElement('i');
                                 star.className = 'fa-solid fa-star';
@@ -936,7 +934,7 @@ class LetterRack {
     
         // Collect all letters from board first
         boardTiles.forEach(tile => {
-            // ตรวจสอบว่าตัวอักษรไม่อยู่ในสถานะ submitted และไม่ใช่ bot-played
+            // Check tile is not submitted or bot-played
             const isNotSubmittedOrBotPlayed = !tile.classList.contains('submitted') && !tile.classList.contains('bot-played');
     
             if (isNotSubmittedOrBotPlayed) {
@@ -985,17 +983,14 @@ class LetterRack {
         tile.id = 'rack-tile-' + Date.now();
         tile.dataset.letter = letter;
     
-        // เพิ่มตัวอักษร
         const letterContent = document.createElement('span');
         letterContent.className = 'letter-content';
         letterContent.textContent = letter;
     
-        // เพิ่มคะแนน
         const score = document.createElement('span');
         score.className = 'letter-score';
         score.textContent = LETTER_DATA[letter]?.score || 0;
     
-        // เพิ่มเนื้อหาใน tile
         tile.appendChild(letterContent);
         tile.appendChild(score);
     
@@ -1124,9 +1119,6 @@ class LetterRack {
             console.error('Rack contains more letters than allowed!');
         }
     }
-    
-    
-    
 
     updateRackDisplay() {
         // Clear current rack display
@@ -1238,16 +1230,15 @@ class LetterRack {
     }
 
     shuffleLetters() {
-        // สลับเฉพาะตัวอักษรที่มีอยู่ใน this.letters เท่านั้น
+        // Shuffle only letter in this.letters
         for (let i = this.letters.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [this.letters[i], this.letters[j]] = [this.letters[j], this.letters[i]];
         }
-        // อัพเดทการแสดงผลหลังจากสลับตัวอักษร
+        // Update display after shuffling
         this.updateRackDisplay();
         console.log('Shuffled letters:', this.letters);
     }
-    
 
     updateButtonState() {
         const shuffleBtn = document.getElementById('shuffleBtn');
@@ -1349,7 +1340,7 @@ class GameControls {
         const swapBtn = document.getElementById('swapBtn');
         const submitBtn = document.getElementById('submitBtn');
         
-        // เพิ่ม event listeners
+        // And event listeners
         resignBtn.addEventListener('click', () => this.handleResign());
         skipBtn.addEventListener('click', () => this.handleSkipTurn());
         swapBtn.addEventListener('click', () => this.handleSwap());
@@ -1380,18 +1371,18 @@ class GameControls {
     }
 
     executeSkip() {
-        // เปลี่ยนเทิร์นและเรียกให้บอทเล่น
+        // Switch turn and let bot play
         if (window.gameManager) {
             window.gameManager.isPlayerTurn = false;
             window.gameManager.updateActionButtons();
             window.gameManager.updateTurnIndicator();
             
-            // ให้บอทเล่นหลังจากเปลี่ยนเทิร์น
+            // let bot play after turn switch
             setTimeout(async () => {
                 if (window.bot) {
                     await window.bot.makeMove();
                 }
-            }, 1000);
+            }, 3000);
         }
     }
 
@@ -1404,13 +1395,11 @@ class GameControls {
         const swapBtn = document.getElementById('swapSelectedBtn');
         const cancelBtn = document.getElementById('cancelSwapBtn');
 
-        // ลบ event listeners เดิม
         const newSwapBtn = swapBtn.cloneNode(true);
         const newCancelBtn = cancelBtn.cloneNode(true);
         swapBtn.parentNode.replaceChild(newSwapBtn, swapBtn);
         cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
 
-        // เพิ่ม event listeners ใหม่
         newSwapBtn.addEventListener('click', () => {
             if (this.selectedLetters.size > 0) {
                 this.executeSwap();
@@ -1434,14 +1423,14 @@ class GameControls {
         const container = document.getElementById('swapLettersContainer');
         const swapBtn = document.getElementById('swapSelectedBtn');
 
-        // เคลียร์ข้อมูลเดิม
+        // Clear existing letters
         container.innerHTML = '';
         this.selectedLetters.clear();
         swapBtn.disabled = true;
 
         console.log('Current rack letters:', this.letterRack.letters);
 
-        // สร้าง tiles สำหรับแต่ละตัวอักษร
+        // Create tiles for each letter
         this.letterRack.letters.forEach((letter, index) => {
             const letterDiv = document.createElement('div');
             letterDiv.className = 'swap-letter';
@@ -1452,7 +1441,6 @@ class GameControls {
                 <span class="letter-score">${LETTER_DATA[letter]?.score || 0}</span>
             `;
 
-            // เพิ่ม click handler
             letterDiv.addEventListener('click', () => {
                 letterDiv.classList.toggle('selected');
                 if (letterDiv.classList.contains('selected')) {
@@ -1467,7 +1455,7 @@ class GameControls {
             container.appendChild(letterDiv);
         });
 
-        // แสดง modal
+        // Show modal
         modal.style.display = 'flex';
         console.log('Swap modal opened');
     }
@@ -1480,13 +1468,12 @@ class GameControls {
 
         console.log('Executing swap for indices:', Array.from(this.selectedLetters));
 
-        // แปลง Set เป็น Array และเรียงลำดับจากมากไปน้อย
         const indices = Array.from(this.selectedLetters).sort((a, b) => b - a);
         const lettersToSwap = indices.map(i => this.letterRack.letters[i]);
 
         console.log('Letters to swap:', lettersToSwap);
 
-        // คืนตัวอักษรลงถุงและลบออกจาก rack
+        // Return letter to bag and remove from rack
         lettersToSwap.forEach(letter => {
             if (LETTER_DATA[letter]) {
                 LETTER_DATA[letter].count++;
@@ -1497,7 +1484,7 @@ class GameControls {
             }
         });
 
-        // จั่วตัวอักษรใหม่
+        // Refill rack with new letters
         for (let i = 0; i < lettersToSwap.length; i++) {
             const newLetter = this.letterRack.letterManager.getRandomLetter();
             if (newLetter) {
@@ -1505,22 +1492,21 @@ class GameControls {
             }
         }
 
-        // อัพเดทการแสดงผล
         this.letterRack.updateRackDisplay();
         updateTileBagCounts();
 
         console.log('New rack letters:', this.letterRack.letters);
 
-        // ปิด modal และเปลี่ยนเทิร์น
+        // close modal and switch turn
         this.closeSwapModal();
 
-        // เปลี่ยนเทิร์นและเรียกให้บอทเล่น
+        // Switch turn and call bot to play
         if (window.gameManager) {
             window.gameManager.isPlayerTurn = false;
             window.gameManager.updateActionButtons();
             window.gameManager.updateTurnIndicator();
             
-            // ให้บอทเล่นหลังจากเปลี่ยนเทิร์น
+            // let bot play after turn switch
             setTimeout(() => {
                 if (window.bot) {
                     window.bot.makeMove();
@@ -1540,21 +1526,16 @@ class GameControls {
         let wordScore = 0;
         let wordMultiplier = 1;
         
-        // Step 1: คำนวณคะแนนพื้นฐานของแต่ละตัวอักษรและเก็บตัวคูณคำ
         cells.forEach((cell, index) => {
             const letter = word[index];
             let letterScore = LETTER_DATA[letter]?.score || 0;
             
-            // ข้ามช่องดาวกลาง
             if (!cell.classList.contains('start')) {
-                // คำนวณตัวคูณตัวอักษร (DL, TL)
                 if (cell.classList.contains('dl')) {
                     letterScore *= 2;
                 } else if (cell.classList.contains('tl')) {
                     letterScore *= 3;
                 }
-                
-                // เก็บตัวคูณคำ (DW, TW)
                 if (cell.classList.contains('dw')) {
                     wordMultiplier *= 2;
                 } else if (cell.classList.contains('tw')) {
@@ -1565,7 +1546,6 @@ class GameControls {
             wordScore += letterScore;
         });
         
-        // Step 2: คูณคะแนนรวมด้วยตัวคูณคำทั้งหมด
         const finalScore = wordScore * wordMultiplier;
         
         // Debug log
@@ -1577,14 +1557,14 @@ class GameControls {
     handleSubmit() {
         console.log('Checking placed tiles...');
     
-        // เพิ่มการตรวจสอบ placedLetters จาก letterRack
+        // Check placedLetters from letterRack
         if (this.letterRack.placedLetters.size === 0) {
             console.log('No letters placed on board');
             alert('Please place some letters first');
             return;
         }
 
-        // หา tiles ที่เพิ่งวางใหม่
+        // Find tiles newly placed on board
         const placedTiles = Array.from(document.querySelectorAll('.scrabble-grid .cell .tile'))
             .filter(tile => {
                 const isNotSubmitted = !tile.classList.contains('submitted');
@@ -1602,14 +1582,11 @@ class GameControls {
             return;
         }
 
-        // ส่วนที่เหลือของ handleSubmit ยังคงเหมือนเดิม
-        // ...existing code...
-
-        // เก็บข้อมูลคำที่วางทั้งหมด
+        // Keep all placed words
         const allWords = new Set();
         const allCells = new Set();
         
-        // ตรวจสอบทุก tile ที่วาง
+        // Check all available tiles
         placedTiles.forEach(tile => {
             const cell = tile.closest('.cell');
             if (!cell) return;
@@ -1637,7 +1614,7 @@ class GameControls {
                 return { word, cells, isValid, score };
             })
         ).then(results => {
-            // ลบ class validation ทั้งหมดก่อน
+            // Delete all class validations first
             allCells.forEach(cell => {
                 const tile = cell.querySelector('.tile');
                 if (tile) {
@@ -1648,10 +1625,10 @@ class GameControls {
             if (results.every(({isValid}) => isValid)) {
                 const totalScore = results.reduce((sum, {score}) => sum + score, 0);
                 
-                // อัพเดทคะแนนและ UI
+                // Update score and UI
                 results.forEach(({word}) => this.playerWord.add(word));
                 
-                // เพิ่ม submitted class และลบ validation classes
+                // And submitted class and delete validation classes
                 placedTiles.forEach(tile => {
                     tile.classList.remove('valid-word', 'invalid-word', 'validating');
                     tile.classList.add('submitted');
@@ -1661,12 +1638,12 @@ class GameControls {
                 const currentScore = parseInt(playerScore.textContent) || 0;
                 playerScore.textContent = currentScore + totalScore;
                 
-                // เคลียร์และเปลี่ยนเทิร์น
+                // Clear and switch turn
                 this.letterRack.placedLetters.clear();
                 this.letterRack.fillRack();
                 this.letterRack.updateButtonState();
                 
-                // เปลี่ยนเทิร์นและเรียกให้บอทเล่น
+                // Switch turn and let bot play
                 window.gameManager.isPlayerTurn = false;
                 window.gameManager.updateActionButtons();
                 window.gameManager.updateTurnIndicator();
@@ -1680,7 +1657,7 @@ class GameControls {
                 const invalidWords = results.filter(r => !r.isValid).map(r => r.word);
                 alert(`Invalid word(s): ${invalidWords.join(', ')}`);
                 
-                // คืนค่า tiles กลับไปที่ rack
+                // Return tiles to rack
                 this.letterRack.returnLettersToRack();
             }
         });
@@ -1696,13 +1673,13 @@ class GameControls {
             const row = parseInt(cell.dataset.row);
             const col = parseInt(cell.dataset.col);
 
-            // ตรวจสอบแนวนอน
+            // Check horizantal
             const horizontalWord = this.getWordInDirection(row, col, 0, 1);
             if (horizontalWord && horizontalWord.word.length > 1) {
                 words.add(horizontalWord);
             }
 
-            // ตรวจสอบแนวตั้ง
+            // Check vertical
             const verticalWord = this.getWordInDirection(row, col, 1, 0);
             if (verticalWord && verticalWord.word.length > 1) {
                 words.add(verticalWord);
@@ -1713,7 +1690,7 @@ class GameControls {
     }
 
     getWordInDirection(startRow, startCol, deltaRow, deltaCol) {
-        // หาจุดเริ่มต้นของคำ
+        // Find start of word
         let row = startRow;
         let col = startCol;
         while (this.hasLetterAt(row - deltaRow, col - deltaCol)) {
@@ -1721,7 +1698,7 @@ class GameControls {
             col -= deltaCol;
         }
 
-        // สร้างคำจากตำแหน่งเริ่มต้น
+        // Create word from start position
         let word = '';
         const wordCells = [];
         let currentRow = row;
@@ -1760,7 +1737,6 @@ class GameControls {
 
     async validateWords(words) {
         try {
-            // เปลี่ยนวิธีการดึงคำและตรวจสอบ
             const validations = await Promise.all(
                 words.map(async ({word}) => {
                     console.log('Validating word:', word); // Debug log
@@ -1782,14 +1758,13 @@ class GameControls {
             let wordScore = 0;
             let wordMultiplier = 1;
 
-            // คำนวณคะแนนแต่ละตัวอักษร
+            // Calculate score for each letter
             for (const letter of word) {
                 const letterScore = LETTER_DATA[letter].score;
-                // TODO: เพิ่มการคูณคะแนนตามช่องพิเศษ
                 wordScore += letterScore;
             }
 
-            // คูณคะแนนรวมของคำ (ถ้ามีช่อง DW หรือ TW)
+            // Multiply
             totalScore += wordScore * wordMultiplier;
         });
 
@@ -1825,7 +1800,6 @@ class ScoreManager {
 
 class GameManager {
     constructor() {
-        // แก้ไขจาก random เป็นกำหนดให้ player เริ่มก่อนเสมอ
         this.isPlayerTurn = true; 
         this.turnTime = 15 * 60; // 15 minutes in seconds
         this.playerTimeLeft = this.turnTime;
@@ -1836,11 +1810,9 @@ class GameManager {
     }
 
     initialize() {
-        // แสดงผล turn แรก
-        this.updateTurnIndicator();
-        this.updateActionButtons(); // Add this line
-        // เริ่มจับเวลา
-        this.startTimer();
+        this.updateTurnIndicator(); // Update turn indicator
+        this.updateActionButtons(); // Update action buttons
+        this.startTimer(); // Start timer
     }
 
     updateTurnIndicator() {
@@ -1955,13 +1927,10 @@ class GameManager {
     }
 
     checkGameEnd() {
-        // End game conditions:
-        // 1. Time's up
         if (this.playerTimeLeft <= 0 || this.botTimeLeft <= 0) {
             return true;
         }
         
-        // 2. No more tiles in bag and either player has no tiles
         const tileBagEmpty = Object.values(LETTER_DATA)
             .every(({count}) => count === 0);
         
@@ -1987,10 +1956,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             console.log('Initializing game...');
             
-            // รีเซ็ตค่าตัวอักษรก่อนเริ่มเกมใหม่ทุกครั้ง
+            // Reset letter data before starting
             resetLetterData();
             
-            // ตรวจสอบจำนวนตัวอักษรหลังรีเซ็ต
+            // Check tile after reset
             if (!validateGameStart()) {
                 console.log('Game initialization failed, retrying...');
                 resetLetterData();

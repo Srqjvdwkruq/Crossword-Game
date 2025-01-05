@@ -37,7 +37,7 @@ export class BotRack {
             }
         }
 
-        // ตรวจสอบว่าได้ตัวอักษรครบหรือไม่
+        // Check if all letters are obtained
         if (this.letters.length === this.maxLetters) {
             console.log('Bot rack filled successfully:', this.letters);
         } else {
@@ -77,7 +77,7 @@ export class BotRack {
     }
 
     removeLetter(letter) {
-        // ค้นหาตัวอักษรโดยไม่สนใจ case
+        // Find letter ignoring case
         const index = this.letters.findIndex(l => l.toUpperCase() === letter.toUpperCase());
         if (index > -1) {
             this.letters.splice(index, 1);
@@ -90,7 +90,7 @@ export class BotRack {
 
     removeLetters(letters) {
         let success = true;
-        // สร้าง copy ของ letters array เพื่อไม่ให้กระทบกับ original
+        // Create a copy of letters array to avoid affecting the original
         const lettersToRemove = [...letters];
         
         for (const letter of lettersToRemove) {
@@ -101,11 +101,11 @@ export class BotRack {
             }
         }
         
-        // ถ้าลบไม่สำเร็จ ให้คืนตัวอักษรที่ลบไปแล้วกลับมา
+        // If removal fails, restore previously removed letters
         if (!success) {
             const removedCount = lettersToRemove.length - this.letters.length;
             if (removedCount > 0) {
-                // เพิ่มตัวอักษรที่ลบไปกลับเข้า rack
+                // Add removed letters back to rack
                 this.letters.push(...letters.slice(0, removedCount));
                 this.updateDisplay();
             }
@@ -131,10 +131,10 @@ export class ScrabbleBot {
             mid: { minLength: 3 },
             late: { minLength: 3 }
         };
-        this.swapCount = 0; // เพิ่มตัวนับจำนวนครั้งที่ swap
-        this.maxSwapAttempts = Infinity; // เปลี่ยนเป็นไม่จำกัดจำนวนครั้งที่ swap ได้
+        this.swapCount = 0; // Add counter for swap attempts
+        this.maxSwapAttempts = Infinity; // Set unlimited swap attempts
         
-        // เพิ่มการตรวจสอบ
+        // Add validation
         if (!this.wordValidator) {
             console.error('WordValidator not initialized');
         }
@@ -163,7 +163,7 @@ export class ScrabbleBot {
         const availableWords = new Set();
         const startTime = Date.now();
 
-        // เริ่มจากคำสั้นไปยาว เพื่อให้มีโอกาสเจอคำที่ใช้ได้ก่อน
+        // Start from short to long words for better chances of finding valid words
         for (let length = 2; length <= this.rack.letters.length; length++) {
             const combinations = this.generateCombinations(this.rack.letters, length);
             for (const combo of combinations) {
@@ -346,8 +346,7 @@ export class ScrabbleBot {
                     if (await this.validateMove(move)) {
                         const score = this.calculateMoveScore(word, anchor.row, anchor.col, isHorizontal);
                         if (score > bestScore) {
-                            bestScore = score;
-                            bestMove = { ...move, score };
+                            bestScore = { ...move, score };
                         }
                     }
                 }

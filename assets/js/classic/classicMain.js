@@ -54,7 +54,7 @@ class GameManager {
         this.continueBtn.addEventListener('click', () => this.handleContinue());
         this.quitBtn.addEventListener('click', () => this.handleQuit());
     }
-
+    
     handleClearAll() {
         const cells = document.querySelectorAll('.box2');
         cells.forEach(cell => {

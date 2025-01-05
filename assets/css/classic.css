@@ -1,5 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap'); */
 
+/* ========== Category Container ========== */
 .category-container {
     top: 4rem;
     max-width: 1800px;
@@ -78,6 +79,7 @@
 
 }
 
+/* ========== In Classic Game ========== */
 .game-area-classic-container {
     display: flex;
     flex-direction: column;
@@ -203,7 +205,6 @@ td {
     align-items: center;
 }
 
-
 .heading {
     display: flex;
     align-items: center;
@@ -269,11 +270,4 @@ td {
     background-color: #ffcdd2 !important;
     border-color: #f44336 !important;
     color: #c62828 !important;
-}
-
-.confirm-box p {
-    white-space: pre-line;
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 1.5em;
 }

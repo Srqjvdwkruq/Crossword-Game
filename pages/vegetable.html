@@ -11,16 +11,19 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <!-- Game Container -->
     <div class="game-container-classic-container">
+        <!-- Game Area -->
         <div class="game-area-classic-container">
-        <!-- Menu Button - ใช้โครงสร้างเดียวกับ scrabble_cw.html -->
-        <div id="menuBtn" class="menu-container">
-            <button class="menu-btn" aria-label="Menu"><i class='bx bx-menu'></i></button>
-            <div class="menu-dropdown">
-                <button id="continueBtn">Continue</button>
-                <button id="quitBtn">Quit</button>
+            <!-- Menu Container -->
+            <div id="menuBtn" class="menu-container">
+                <button class="menu-btn" aria-label="Menu"><i class='bx bx-menu'></i></button>
+                <!-- Dropdown -->
+                <div class="menu-dropdown">
+                    <button id="continueBtn">Continue</button>
+                    <button id="quitBtn">Quit</button>
+                </div>
             </div>
-        </div>
 
         <style>
             .box1, .box2 {
@@ -29,6 +32,7 @@
             }
         </style>
 
+        <!-- Classic Board -->
         <div id="classicBoard" class="classic-board">
             <table>
                 <tr>
@@ -195,9 +199,10 @@
                     <div class="timer">00:00</div>
                     <h1>Vegetables</h1>
                 </div>
-                
+                <!-- Show Picture -->
                 <div class="hint-box"></div>
             </div>
+            <!-- Button Container -->
             <div class="button-container">
                 <button id="clearAllBtn" class="clearAll-btn">Clear All</button>
                 <button id="checkansBtn" class="checkans-btn">
@@ -207,14 +212,13 @@
             </div>
         </div>
 
-        <!-- Confirm Box - ใช้โครงสร้างเดียวกับ scrabble_cw.html -->
-            <div id="confirmBox" class="confirm-box">
-                <div class="confirm-content">
-                    <p id="confirmMessage"></p>
-                    <div class="confirm-buttons">
-                        <button id="confirmYes" class="confirm-btn yes">YES</button>
-                        <button id="confirmNo" class="confirm-btn no">NO</button>
-                    </div>
+        <!-- Confirm Box -->
+        <div id="confirmBox" class="confirm-box">
+            <div class="confirm-content">
+                <p id="confirmMessage"></p>
+                <div class="confirm-buttons">
+                    <button id="confirmYes" class="confirm-btn yes">YES</button>
+                    <button id="confirmNo" class="confirm-btn no">NO</button>
                 </div>
             </div>
         </div>

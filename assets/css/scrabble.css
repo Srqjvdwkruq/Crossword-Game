@@ -1,9 +1,8 @@
-/* Scrabble Crossword Styles */
+/* ========== Scrabble ========== */
 .game-container {
     display: flex;
     padding: 2rem;
     padding-left: 6rem;
-    left: -20%;
     max-width: 1800px;
     margin: 0 auto;
     min-height: 100vh;
@@ -32,66 +31,6 @@
     justify-content: center;
 }
 
-/* scrabbleMode.html */
-#scrabbleModeContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 1800px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    z-index: 0;
-}
-
-.scrabble-title {
-    text-align: center;
-    text-shadow: 2px 2px 4px var(--shadow-color);
-    font-size: calc(4vh + 2vw);
-    color: #fff;
-    margin: 0 0 20px 0;
-    z-index: 1;
-}
-.scrabbleSingle-mode,
-.scrabbleMulti-mode {
-    font-size: 22px;
-    width: 280px;
-    height: 60px;
-    display: block;
-    margin: auto;
-    text-align: center;
-}
-
-.scrabbleMulti-mode[disabled] {
-    pointer-events: none;
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: #c5c5c5;
-    box-shadow: 0 4px 0 #888;
-}
-
-.back-btn2 {
-    font-size: 2rem;
-    width: 280px;
-    height: 60px;
-    display: block;
-    margin: auto;
-    text-align: center;
-    background: var(--primary-color2);
-    box-shadow: 0 4px 0 var(--primary-dark2);
-}
-
-.back-btn2:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 0 var(--primary-dark2);
-}
-
-/* Scrabble Crossword Styles */
 .scrabble-grid {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
@@ -459,6 +398,7 @@
     background-color: #88a784;
     box-shadow: 0 5px 0 var(--y-dark2);
 }
+
 /* Player Info Style */
 .player-info {
     position: fixed;
@@ -526,7 +466,7 @@
     border-radius: 10px;
 }
 
-/* Add new tile-bags styles */
+/* Tile Bag Style */
 .tile-bags-container {
     position: fixed;
     top: 25%;
@@ -972,5 +912,3 @@
         margin: 1rem 0;
     }
 } */
-
-
