@@ -25,16 +25,16 @@ class AnimalGame extends BaseGame {
         );
         
         this.hintImages = {
-            1: "/assets/img/vegetable/carrot.svg",
-            2: "/assets/img/vegetable/cucumber.svg",
-            3: "/assets/img/vegetable/corn.svg",
-            4: "/assets/img/vegetable/eggplant.svg",
-            5: "/assets/img/vegetable/mint.png",
-            6: "/assets/img/vegetable/onion.svg",
-            7: "/assets/img/vegetable/chili.svg",
-            8: "/assets/img/vegetable/potato.svg",
-            9: "/assets/img/vegetable/taro.png",
-            10: "/assets/img/vegetable/tomato.jpg"
+            1: "../assets/img/vegetable/carrot.svg",
+            2: "../assets/img/vegetable/cucumber.svg",
+            3: "../assets/img/vegetable/corn.svg",
+            4: "../assets/img/vegetable/eggplant.svg",
+            5: "../assets/img/vegetable/mint.png",
+            6: "../assets/img/vegetable/onion.svg",
+            7: "../assets/img/vegetable/chili.svg",
+            8: "../assets/img/vegetable/potato.svg",
+            9: "../assets/img/vegetable/taro.png",
+            10: "../assets/img/vegetable/tomato.jpg"
         };
     }
 

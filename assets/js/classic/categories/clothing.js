@@ -25,16 +25,16 @@ class AnimalGame extends BaseGame {
         );
         
         this.hintImages = {
-            1: "/assets/img/clothing/underwear.svg",
-            2: "/assets/img/clothing/pants.jpg",
-            3: "/assets/img/clothing/shirt.png",
-            4: "/assets/img/clothing/jeans.png",
-            5: "/assets/img/clothing/hoodie.png",
-            6: "/assets/img/clothing/dress.avif",
-            7: "/assets/img/clothing/sweater.svg",
-            8: "/assets/img/clothing/cap.png",
-            9: "/assets/img/clothing/tie.png",
-            10: "/assets/img/clothing/suit.png"
+            1: "../assets/img/clothing/underwear.svg",
+            2: "../assets/img/clothing/pants.jpg",
+            3: "../assets/img/clothing/shirt.png",
+            4: "../assets/img/clothing/jeans.png",
+            5: "../assets/img/clothing/hoodie.png",
+            6: "../assets/img/clothing/dress.avif",
+            7: "../assets/img/clothing/sweater.svg",
+            8: "../assets/img/clothing/cap.png",
+            9: "../assets/img/clothing/tie.png",
+            10: "../assets/img/clothing/suit.png"
         };
     }
 

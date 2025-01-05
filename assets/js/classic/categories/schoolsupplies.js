@@ -25,16 +25,16 @@ class AnimalGame extends BaseGame {
         );
         
         this.hintImages = {
-            1: "/assets/img/school supplies/notebook.jpg",
-            2: "/assets/img/school supplies/book.png",
-            3: "/assets/img/school supplies/scissors.avif",
-            4: "/assets/img/school supplies/sharpener.png",
-            5: "/assets/img/school supplies/backpack.avif",
-            6: "/assets/img/school supplies/tape.jpg",
-            7: "/assets/img/school supplies/glue.avif",
-            8: "/assets/img/school supplies/pencil.avif",
-            9: "/assets/img/school supplies/pen.jpg",
-            10: "/assets/img/school supplies/eraser.avif"
+            1: "../assets/img/school supplies/notebook.jpg",
+            2: "../assets/img/school supplies/book.png",
+            3: "../assets/img/school supplies/scissors.avif",
+            4: "../assets/img/school supplies/sharpener.png",
+            5: "../assets/img/school supplies/backpack.avif",
+            6: "../assets/img/school supplies/tape.jpg",
+            7: "../assets/img/school supplies/glue.avif",
+            8: "../assets/img/school supplies/pencil.avif",
+            9: "../assets/img/school supplies/pen.jpg",
+            10: "../assets/img/school supplies/eraser.avif"
         };
     }
 

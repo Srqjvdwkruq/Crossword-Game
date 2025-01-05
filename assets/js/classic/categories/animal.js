@@ -25,16 +25,16 @@ class AnimalGame extends BaseGame {
         );
         
         this.hintImages = {
-            1: "/assets/img/animal/monkey.svg",
-            2: "/assets/img/animal/tiger.jpg",
-            3: "/assets/img/animal/lion.png",
-            4: "/assets/img/animal/snake.jpg",
-            5: "/assets/img/animal/elephant.avif",
-            6: "/assets/img/animal/bear.svg",
-            7: "/assets/img/animal/panda.avif",
-            8: "/assets/img/animal/giraffe.avif",
-            9: "/assets/img/animal/frog.jpg",
-            10: "/assets/img/animal/zebra.svg"
+            1: "../assets/img/animal/monkey.svg",
+            2: "../assets/img/animal/tiger.jpg",
+            3: "../assets/img/animal/lion.png",
+            4: "../assets/img/animal/snake.jpg",
+            5: "../assets/img/animal/elephant.avif",
+            6: "../assets/img/animal/bear.svg",
+            7: "../assets/img/animal/panda.avif",
+            8: "../assets/img/animal/giraffe.avif",
+            9: "../assets/img/animal/frog.jpg",
+            10: "../assets/img/animal/zebra.svg"
         };
     }
 

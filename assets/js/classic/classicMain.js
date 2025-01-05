@@ -63,10 +63,6 @@ class GameManager {
         });
     }
 
-    handleCheckAnswer() {
-        // Will be implemented by category-specific code
-    }
-
     handleMenuClick() {
         this.pauseTimer();
         this.showConfirmBox();
