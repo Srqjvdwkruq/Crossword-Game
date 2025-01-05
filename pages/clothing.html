@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Clothing</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/classic.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="game-container-classic-container">
+        <div class="game-area-classic-container">
+        <!-- Menu Button - ใช้โครงสร้างเดียวกับ scrabble_cw.html -->
+            <div id="menuBtn" class="menu-container">
+                <button class="menu-btn" aria-label="Menu"><i class='bx bx-menu'></i></button>
+                <div class="menu-dropdown">
+                    <button id="continueBtn">Continue</button>
+                    <button id="quitBtn">Quit</button>
+                </div>
+            </div>
+
+            <!--  div wrapper for grid -->
+            <div id="clasicBoard" class="classic-board">
+                <table>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="1"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                    </tr>
+                    <tr>
+                        <td class="box2" data-clue="2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2" data-clue="3"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="4"><span contenteditable="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="5"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="6"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="7"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="8"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="9"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2" data-clue="10"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box1"></td>
+                        <td class="box2"><span contenteditable="true"></span></td>
+                        <td class="box1"></td>
+                    </tr>
+                </table>
+            </div>
+
+             <!-- Clues Container -->
+             <div class="clues-container">
+                <div class="hint-box-wrapper">
+                    <div class="heading">
+                        <div class="timer">00:00</div>
+                        <h1>Clothing</h1>
+                    </div>
+                    
+                    <div class="hint-box"></div>
+                </div>
+                <div class="button-container">
+                    <button id="clearAllBtn" class="clearAll-btn">Clear All</button>
+                    <button id="checkansBtn" class="checkans-btn">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Check Answer</span>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        <!-- Confirm Box - ใช้โครงสร้างเดียวกับ scrabble_cw.html -->
+            <div id="confirmBox" class="confirm-box">
+                <div class="confirm-content">
+                    <p id="confirmMessage"></p>
+                    <div class="confirm-buttons">
+                        <button id="confirmYes" class="confirm-btn yes">YES</button>
+                        <button id="confirmNo" class="confirm-btn no">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="/assets/js/game.js"></script>
+    <script src="/assets/js/classic/classicMain.js"></script>
+    <script src="/assets/js/classic/globalConfig.js"></script>
+    <script src="/assets/js/classic/categories/clothing.js"></script>
+</body>
+</html>

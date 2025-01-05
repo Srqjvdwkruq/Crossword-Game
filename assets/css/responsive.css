@@ -1,0 +1,2876 @@
+/* Base layout classes - add these at the top */
+.game-container-scrabble-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.game-area-scrabble-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mobile Extra Small - 320px */
+@media screen and (max-width: 320px) {
+    /*========== index.html ==========*/
+    .title {
+        font-size: 3.5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 1.5rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        min-width: 150px;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        justify-content: flex-start;
+        gap: 1rem;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .category-title {
+        left: 6rem;
+        position: absolute;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .back-btn {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .category-list {
+        margin-top: 6rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        padding: 1rem;
+        display: grid;
+        width: 300px;
+        grid-template-columns: repeat(2, 130px);
+        gap: 0.8rem;
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 100%;
+        height: 80px;
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .category-btn i {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 35px;
+        height: 35px;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .classic-board {
+        width: 310px;
+        margin: 4rem auto 0;
+        padding: 5px;
+        order: 1;
+    }
+
+    .classic-board table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .classic-board td {
+        width: calc(100% / 13);
+        height: 0;
+        padding-bottom: calc(100% / 13);
+        position: relative;
+        font-size: 0.5rem;
+    }
+
+    .classic-board td span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box2[data-clue]::before {
+        font-size: 0.5rem;
+    }
+
+    .box2 span {
+        font-size: 0.9rem;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .heading {
+        position: fixed;
+        top: 0.5rem;
+        left: 4rem;
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2rem;
+        margin: 0;
+        border-radius: 10px;
+        background: #dec5bd;
+    }
+
+    .heading .timer {
+        font-size: 1rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 1rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        width: 100%;
+        order: 2;
+        margin-top: 1rem;
+    }
+
+    .hint-box {
+        position: relative;
+        width: 100vw;
+        height: 310px;
+        max-height: none;
+        margin: 1rem;
+    }
+
+    .button-container {
+        position: relative;
+        width: 310px;
+        margin: 0.5rem auto;
+        display: flex;
+        gap: 5px;
+    }
+
+    .clearAll-btn,
+    .checkans-btn {
+        flex: 1;
+        height: 35px;
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.2rem;
+        padding: 1rem;
+        max-width: 200px;
+        height: 50px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.5rem;
+        max-width: 200px;
+        height: 50px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    body {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .game-container-scrabble-container {
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+        padding-top: 3rem; 
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-area-scrabble-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        padding: 1rem 0;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 7rem;
+        width: 100%;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .scrabble-grid {
+        width: 310px;
+        height: 310px;
+        gap: 1px;
+        padding: 2px;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 18px;
+        min-height: 18px;
+        font-size: 0.6em;
+        border-radius: 3px;
+    }
+
+    .game-container-scrabble-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 7rem;
+        bottom: 0.5rem;
+        width: 310px;
+        height: 50px;
+        padding: 5px;
+        background: rgba(248, 249, 250, 0.95);
+        display: flex;
+    }
+
+    .letter-rack {
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        gap: 0.1rem;
+    }
+
+    .letter-tile {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 0 #e3c59b;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.5rem;
+        margin-bottom: 1rem;
+        margin-left: -1rem;
+        z-index: 9999;
+    }
+
+    .rack-btn {
+        width: 100%;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 8rem;
+        bottom: 5rem;
+        width: 310px;
+        height: 30px;
+        display: flex;
+        gap: 5px;
+        font-size: 0.7rem;
+    }
+
+    .player-info {
+        position: fixed;
+        top: 0.5rem;
+        left: 3rem;
+        width: 100%;
+        height: 100px;
+        padding: 5px;
+        transform: scale(0.8);
+        transform-origin: left top;
+        z-index: 99;
+    }
+
+    .player-container {
+        gap: 5px;
+    }
+
+    .player, .bot {
+        padding: 6px 6px;
+        width: 140px;
+        margin: 0;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 0.9em;
+        padding-bottom: 4px;
+    }
+
+    .stats {
+        gap: 5px;
+    }
+
+    .stats span {
+        font-size: 0.9em;
+        padding: 4px;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .tile-bags-container {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    /*========== index.html ==========*/
+    .title {
+        font-size: 3.5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 1.5rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        min-width: 150px;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 4rem;
+        left: 1rem;
+    }
+
+    .category-title {
+        margin-left: 3rem;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        padding: 1rem;
+        display: grid;
+        width: 400px;
+        grid-template-columns: repeat(2, 180px);
+        gap: 0.8rem;
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 100%;
+        height: 100px;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .category-btn i {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100vw;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .classic-board {
+        width: 100%;
+        margin-top: 4rem;
+        padding: 0.5rem;
+        order: 1;
+    }
+
+    .classic-board table {
+        width: 100%;
+        height: auto;
+    }
+
+    .classic-board td {
+        width: calc(100% / 13);
+        height: 0;
+        padding-bottom: calc(100% / 13);
+        position: relative;
+        font-size: 0.5rem;
+    }
+
+    .classic-board td span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box2[data-clue]::before {
+        font-size: 0.5rem;
+    }
+
+    .box2 span {
+        font-size: 0.9rem;
+    }
+
+    .heading {
+        position: fixed;
+        top: 0.5rem;
+        left: 4rem;
+        width: 80vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2rem;
+        margin: 0;
+        border-radius: 10px;
+        background: #dec5bd;
+    }
+
+    .heading .timer {
+        font-size: 1rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 1rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        width: 100vw;
+        order: 2;
+        margin-top: 1rem;
+    }
+
+    .hint-box {
+        position: relative;
+        height: 250px;
+        width: 100vw;
+        margin: 0 1rem !important;
+    }
+
+    .button-container {
+        position: relative;
+        width: 600px;
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 3.2rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.2rem;
+        padding: 1rem;
+        max-width: 300px;
+        height: 50px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.5rem;
+        max-width: 300px;
+        height: 50px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    body {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .game-container-scrabble-container {
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        padding-top: 3rem; 
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-area-scrabble-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        padding: 1rem 0;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 7rem;
+        width: 100%;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .scrabble-grid {
+        width: 100vw;
+        height: 100vw;
+        gap: 1px;
+        padding: 2px;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 17px;
+        min-height: 17px;
+        font-size: 1rem;
+        border-radius: 7px;
+    }
+
+    .game-container-scrabble-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 7rem;
+        bottom: 0.5rem;
+        width: 100vw;
+        height: 70px;
+        padding: 5px;
+        background: rgba(248, 249, 250, 0.95);
+        display: flex;
+    }
+
+    .letter-rack {
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .letter-tile {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 0 #e3c59b;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+        margin-left: -0.6rem;
+        z-index: 9999;
+    }
+
+    .rack-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 8rem;
+        bottom: 5rem;
+        width: 100vw;
+        height: 35px;
+        display: flex;
+        gap: 5px;
+        font-size: 0.8rem;
+    }
+
+    .player-info {
+        position: fixed;
+        top: 0.5rem;
+        left: 4.5rem;
+        width: 100vw;
+        height: 140px;
+        padding: 7px;
+        transform: scale(0.8);
+        transform-origin: left top;
+        z-index: 99;
+    }
+
+    .player-container {
+        gap: 1px;
+    }
+
+    .player, .bot {
+        padding: 6px 6px;
+        width: 170px;
+        height: 120px;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    .player h2, .bot h2 {
+        font-size: 1.5rem !important;
+        padding-bottom: 2rem;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 0.9em;
+        padding-bottom: 4px;
+    }
+
+    .stats {
+        margin-top: 1.5rem;
+        gap: 2px;
+    }
+
+    .stats span {
+        font-size: 0.9em;
+        padding: 4px;
+    }
+
+    .divider i {
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tile-bags-container {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+    /*========== index.html ==========*/
+    .title {
+        font-size: 3.5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 1.5rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        min-width: 150px;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 3.5rem;
+        left: 3rem;
+    }
+
+    .category-title {
+        margin-left: 3rem;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        padding: 1rem;
+        display: grid;
+        width: 400px;
+        grid-template-columns: repeat(2, 180px);
+        gap: 0.8rem;
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 100%;
+        height: 100px;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .category-btn i {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .game-area-classic-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        position: relative;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .classic-board {
+        width: 100%;
+        margin-top: 4rem;
+        padding: 0.5rem;
+        order: 1;
+    }
+
+    .classic-board table {
+        width: 100%;
+        height: auto;
+    }
+
+    .classic-board td {
+        width: calc(100% / 13);
+        height: 0;
+        padding-bottom: calc(100% / 13);
+        position: relative;
+        font-size: 0.5rem;
+    }
+
+    .classic-board td span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box2[data-clue]::before {
+        font-size: 0.5rem;
+    }
+
+    .box2 span {
+        font-size: 0.9rem;
+    }
+
+    .heading {
+        position: fixed;
+        top: 0.5rem;
+        left: 4rem;
+        width: 410px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2rem;
+        margin: 0;
+        border-radius: 10px;
+        background: #dec5bd;
+    }
+
+    .heading .timer {
+        font-size: 1rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 1rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        width: 100%;
+        order: 2;
+        margin-top: 1rem;
+    }
+
+    .hint-box {
+        position: relative;
+        height: 250px;
+        width: 100vw;
+        margin: 0 1rem !important;
+    }
+
+    .button-container {
+        position: relative;
+        width: 600px;
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 3.5rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.2rem;
+        padding: 1rem;
+        max-width: 300px;
+        height: 50px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.5rem;
+        max-width: 300px;
+        height: 50px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    body {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .game-container-scrabble-container {
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+        padding-top: 3rem; 
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 7rem;
+        width: 100%;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .scrabble-grid {
+        width: 450px;
+        height: 450px;
+        gap: 1px;
+        padding: 2px;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 18px;
+        min-height: 18px;
+        font-size: 1rem;
+        border-radius: 7px;
+    }
+
+    .game-container-scrabble-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 7rem;
+        bottom: 0.5rem;
+        width: 450px;
+        height: 70px;
+        padding: 5px;
+        background: rgba(248, 249, 250, 0.95);
+        display: flex;
+    }
+
+    .letter-rack {
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .letter-tile {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 0 #e3c59b;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+        margin-left: -0.6rem;
+        z-index: 9999;
+    }
+
+    .rack-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 8rem;
+        bottom: 5rem;
+        width: 450px;
+        height: 35px;
+        display: flex;
+        gap: 5px;
+        font-size: 0.8rem;
+    }
+
+    .player-info {
+        position: fixed;
+        top: 0.5rem;
+        left: 4.5rem;
+        width: 100%;
+        height: 140px;
+        padding: 7px;
+        transform: scale(0.8);
+        transform-origin: left top;
+        z-index: 99;
+    }
+
+    .player-container {
+        gap: -10px;
+    }
+
+    .player, .bot {
+        padding: 6px 6px;
+        width: 180px;
+        height: 120px;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    .player h2, .bot h2 {
+        font-size: 1.5rem !important;
+        padding-bottom: 2rem;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 0.9em;
+        padding-bottom: 4px;
+    }
+
+    .stats {
+        margin-top: 1.5rem;
+        gap: 2px;
+    }
+
+    .stats span {
+        font-size: 0.9em;
+        padding: 4px;
+    }
+
+    .divider i {
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tile-bags-container {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px){
+    /*========== index.html ==========*/
+    .title {
+        font-size: 4rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 1.8rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        min-width: 150px;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 4rem;
+        left: 5rem;
+    }
+
+    .category-title {
+        margin-left: 3.5rem;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        padding: 1rem;
+        display: grid;
+        width: 400px;
+        grid-template-columns: repeat(2, 180px);
+        gap: 0.8rem;
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 100%;
+        height: 100px;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .category-btn i {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100vw;
+    }
+
+    .classic-board {
+        width: 100%;
+        margin-top: 4rem;
+        padding: 0.5rem;
+        order: 1;
+    }
+
+    .classic-board table {
+        width: 100%;
+        height: auto;
+    }
+
+    .classic-board td {
+        width: calc(100% / 13);
+        height: 0;
+        padding-bottom: calc(100% / 13);
+        position: relative;
+        font-size: 0.5rem;
+    }
+
+    .classic-board td span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box2[data-clue]::before {
+        font-size: 0.5rem;
+    }
+
+    .box2 span {
+        font-size: 0.9rem;
+    }
+
+    .heading {
+        position: fixed;
+        top: 0.5rem;
+        left: 6.5rem;
+        width: 80vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2rem;
+        margin: 0;
+        border-radius: 10px;
+        background: #dec5bd;
+    }
+
+    .heading .timer {
+        font-size: 1.5rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 1.5rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        width: 100%;
+        order: 2;
+        margin-top: 1rem;
+    }
+
+    .hint-box {
+        position: relative;
+        height: 250px;
+        width: 100vw;
+        padding: 0;
+        margin: 0 1.5rem !important;
+    }
+
+    .button-container {
+        position: relative;
+        
+        .clearAll-btn,
+        .checkans-btn {
+            width: 1000px;
+        }
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 3.5rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.2rem;
+        padding: 1rem;
+        max-width: 300px;
+        height: 50px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.5rem;
+        max-width: 300px;
+        height: 50px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    body {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .game-container-scrabble-container {
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+        padding-top: 3rem; 
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-area-scrabble-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        padding: 1rem 0;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 7rem;
+        width: 100%;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .scrabble-grid {
+        width: 570px;
+        height: 570px;
+        gap: 1.5px;
+        padding: 2px;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 20px;
+        min-height: 20px;
+        font-size: 1rem;
+        border-radius: 7px;
+    }
+
+    .game-container-scrabble-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 7rem;
+        bottom: 0.5rem;
+        width: 100vw;
+        height: 90px;
+        padding: 5px;
+        margin: 0 4rem;
+        background: rgba(248, 249, 250, 0.95);
+        display: flex;
+    }
+
+    .letter-rack {
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .letter-tile {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 0 #e3c59b;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+        margin-left: -0.2rem;
+        z-index: 9999;
+    }
+
+    .rack-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 8rem;
+        bottom: 5rem;
+        width: 100vw;
+        height: 35px;
+        display: flex;
+        gap: 5px;
+        font-size: 0.8rem;
+    }
+
+    .player-info {
+        position: fixed;
+        top: 0.5rem;
+        left: 4.5rem;
+        width: 100vw;
+        height: 140px;
+        padding: 7px;
+        transform: scale(0.8);
+        transform-origin: left top;
+        z-index: 99;
+    }
+
+    .player-container {
+        gap: 5px;
+    }
+
+    .player, .bot {
+        padding: 6px 6px;
+        width: 250px;
+        height: 120px;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    .player h2, .bot h2 {
+        font-size: 1.5rem !important;
+        padding-bottom: 2rem;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 0.9em;
+        padding-bottom: 4px;
+    }
+
+    .stats {
+        margin-top: 1.5rem;
+        gap: 2px;
+    }
+
+    .stats span {
+        font-size: 0.9em;
+        padding: 4px;
+    }
+
+    .divider i {
+        font-size: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tile-bags-container {
+        display: none;
+    }    
+}
+
+@media screen and (min-width: 769px) and (max-width: 900px){
+    /*========== index.html ==========*/
+    .title {
+        font-size: 5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 2rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        width: 300px;
+        height: 60px;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 5rem;
+        left: 5rem;
+    }
+
+    .category-title {
+        margin-left: 3rem;
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        display: grid;
+        width: 600px;
+        grid-template-columns: repeat(2, 300px);
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 250px;
+        height: 150px;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+        gap: 3rem !important;
+    }
+
+    .category-btn i {
+        font-size: 4rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .classic-board {
+        width: 100%;
+        margin: 4rem auto 0;
+        padding: 5px;
+        order: 1;
+    }
+
+    .classic-board table {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .classic-board td {
+        width: calc(100% / 13);
+        height: 0;
+        padding-bottom: calc(100% / 13);
+        position: relative;
+        font-size: 0.5rem;
+    }
+
+    .classic-board td span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box2[data-clue]::before {
+        font-size: 1rem;
+    }
+
+    .box2 span {
+        font-size: 0.9rem;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .menu-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .heading {
+        position: fixed;
+        top: 0.5rem;
+        left: 9rem;
+        width: 70%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2rem;
+        margin: 0;
+        border-radius: 10px;
+        background: #dec5bd;
+    }
+
+    .heading .timer {
+        font-size: 1.5rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 1.5rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        width: 100%;
+        order: 2;
+        margin-top: 1rem;
+    }
+
+    .hint-box {
+        position: relative;
+        width: 100vw;
+        height: 310px;
+        max-height: none;
+        margin: 1rem;
+    }
+
+    .button-container {
+        position: relative;
+        width: 100vw;
+        margin: 0.5rem auto;
+        display: flex;
+        gap: 5px;
+    }
+
+    .clearAll-btn,
+    .checkans-btn {
+        width: 900px;
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 4.5rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.8rem;
+        padding: 1rem;
+        width: 350px;
+        height: 70px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.8rem;
+        width: 350px;
+        height: 70px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    body {
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .game-container-scrabble-container {
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+        padding-top: 3rem; 
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-area-scrabble-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        padding: 1rem 0;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 9rem;
+        width: 100%;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .scrabble-grid {
+        width: 750px;
+        height: 750px;
+        gap: 2.5px;
+        padding: 0.5rem;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 18px;
+        min-height: 18px;
+        font-size: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .game-container-scrabble-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 10rem;
+        bottom: 0.5rem;
+        width: 100vw;
+        height: 90px;
+        padding: 5px;
+        background: rgba(248, 249, 250, 0.95);
+        display: flex;
+    }
+
+    .letter-rack {
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .letter-tile {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 0 #e3c59b;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.9rem;
+        margin-bottom: 0.1rem;
+        margin-left: -0.1rem;
+        z-index: 9999;
+    }
+
+    .rack-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 9rem;
+        bottom: 5rem;
+        width: 100vw;
+        height: 60px;
+        display: flex;
+        gap: 5px;
+        font-size: 1.5rem;
+    }
+
+    .player-info {
+        position: fixed;
+        top: 0.5rem;
+        left: 8rem;
+        width: 100%;
+        height: 180px;
+        padding: 7px;
+        transform: scale(0.8);
+        transform-origin: left top;
+        z-index: 99;
+    }
+
+    .player-container {
+        gap: 5px;
+    }
+
+    .player, .bot {
+        padding: 6px 6px;
+        width: 250px;
+        height: 160px;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 4px;
+    }
+
+    .stats {
+        margin-top: 1.5rem;
+        gap: 2px;
+    }
+
+    .stats span {
+        font-size: 2rem;
+        padding: 4px;
+    }
+
+    .divider i {
+        font-size: 2.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tile-bags-container {
+        display: none;
+    }    
+}
+
+@media screen and (min-width: 901px) and (max-width: 1024px) {
+    /*========== index.html ==========*/
+    .title {
+        font-size: 5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 2rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        width: 300px;
+        height: 60px;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 2rem;
+        left: 0;
+        margin: 0;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 5rem;
+        left: 5rem;
+    }
+
+    .category-title {
+        margin-left: 3rem;
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        display: grid;
+        width: 600px;
+        grid-template-columns: repeat(2, 300px);
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 250px;
+        height: 150px;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+        gap: 3rem !important;
+    }
+
+    .category-btn i {
+        font-size: 4rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .game-area-classic-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .classic-board {
+        position: relative;
+        order: 1;
+        top: 6.5rem;
+        width: 50%;
+        height: 50%;
+    }
+
+    .classic-board table {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .classic-board td {
+        width: 30px;     
+        height: 30px;    
+        padding: 0;
+        position: relative;
+        font-size: 0.8rem;  
+    }
+
+    .box2 {
+        width: 25px;     
+        height: 25px;    
+    }
+
+    .box2[data-clue]::before {
+        font-size: 0.7rem; 
+    }
+
+    .box2 span {
+        font-size: 0.9rem; 
+    }
+
+    .heading {
+        position: relative;
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 1rem;
+        background: #d9bab0;
+    }
+
+    .heading .timer {
+        font-size: 2rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 2rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        order: 2;
+        width: 45%;
+        margin-top: 0;
+    }
+
+    .hint-box-wrapper {
+        width: 100%;
+    }
+
+    .hint-box {
+        width: 100%;
+        height: 400px;
+    }
+
+    .button-container {
+        width: 100%;
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 4.5rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.8rem;
+        padding: 1rem;
+        width: 350px;
+        height: 70px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.8rem;
+        width: 350px;
+        height: 70px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    .game-container-scrabble-container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        margin: 0;
+        gap: 1rem;
+        height: 100vh;
+    }
+
+    .game-area-scrabble-container {
+        width: 60%;
+        padding: 0.5rem;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 0.5rem;
+        left: 0.5rem;
+        width: auto;
+        height: auto;
+    }
+
+    .scrabble-grid {
+        width: 450px; 
+        height: 450px;
+        gap: 1px;
+        padding: 5px;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 1rem;
+        left: 2rem;
+        width: 450px; 
+        margin: 0;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 2rem;
+        left: 2.5rem;
+        width: 450px; 
+    }
+
+
+    .player-info {
+        position: fixed;
+        right: 1rem;
+        top: 1.5rem;
+        width: 35%;
+        padding: 1rem;
+        width: 350px;
+        transform: none;
+    }
+
+    .tile-bags-container {
+        position: fixed;
+        right: 1rem;
+        top: 170px; 
+        width: 35%;
+        width: 350px;
+        display: block;
+    }
+
+    .player-container {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .player, .bot {
+        width: 100%;
+        height: auto;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        width: 50px;
+    }
+
+    .stats span {
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 25px;
+        min-height: 25px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+
+    .letter-rack {
+        gap: 0.1rem;
+    }
+
+    .letter-tile {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.7rem;
+        margin-bottom: 5px;
+        margin-left: -0.7rem;
+        z-index: 99999;
+    }
+
+    .game-btn {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+      /*========== index.html ==========*/
+    .title {
+        font-size: 5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 2rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        width: 300px;
+        height: 60px;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 2rem;
+        left: 0;
+        margin: 0;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 5rem;
+        left: 5rem;
+    }
+
+    .category-title {
+        margin-left: 3rem;
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        display: grid;
+        width: 600px;
+        grid-template-columns: repeat(2, 300px);
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 250px;
+        height: 150px;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+        gap: 3rem !important;
+    }
+
+    .category-btn i {
+        font-size: 4rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .game-area-classic-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .classic-board {
+        position: relative;
+        order: 1;
+        top: 6.5rem;
+        width: 50%;
+        height: 50%;
+    }
+
+    .classic-board table {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .classic-board td {
+        width: 30px;     
+        height: 30px;    
+        padding: 0;
+        position: relative;
+        font-size: 0.8rem;  
+    }
+
+    .box2 {
+        width: 25px;     
+        height: 25px;    
+    }
+
+    .box2[data-clue]::before {
+        font-size: 0.7rem; 
+    }
+
+    .box2 span {
+        font-size: 0.9rem; 
+    }
+
+    .heading {
+        position: relative;
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 1rem;
+        background: #d9bab0;
+    }
+
+    .heading .timer {
+        font-size: 2rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 2rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        order: 2;
+        width: 45%;
+        margin-top: 0;
+    }
+
+    .hint-box-wrapper {
+        width: 100%;
+    }
+
+    .hint-box {
+        width: 100%;
+        height: 400px;
+    }
+
+    .button-container {
+        width: 100%;
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 4.5rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.8rem;
+        padding: 1rem;
+        width: 350px;
+        height: 70px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.8rem;
+        width: 350px;
+        height: 70px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    .game-container-scrabble-container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        margin: 0;
+        gap: 1rem;
+        height: 100vh;
+    }
+
+    .game-area-scrabble-container {
+        width: 60%;
+        padding: 0.5rem;
+    }
+
+    .grid-wrapper {
+        position: relative;
+        top: 0.5rem;
+        left: 0.5rem;
+        width: auto;
+        height: auto;
+    }
+
+    .scrabble-grid {
+        width: 500px; 
+        height: 500px;
+        gap: 1px;
+        padding: 5px;
+    }
+
+    .rack-container {
+        position: relative;
+        top: 1rem;
+        left: 0;
+        width: 500px;  
+        margin: 0;
+    }
+
+    .action-buttons {
+        position: relative;
+        top: 2rem;
+        left: 0;
+        width: 500px; 
+        height: 30px;
+    }
+
+
+    .player-info {
+        position: fixed;
+        right: 1rem;
+        top: 1.5rem;
+        width: 35%;
+        padding: 1rem;
+        width: 350px;
+        transform: none;
+    }
+
+    .tile-bags-container {
+        position: fixed;
+        right: 1rem;
+        top: 170px; 
+        width: 35%;
+        width: 350px;
+        display: block;
+    }
+
+    .player-container {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .player, .bot {
+        width: 100%;
+        height: auto;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .player h2, .bot h2 {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        width: 50px;
+    }
+
+    .stats span {
+        font-size: 1rem;
+        padding: 0.3rem;
+    }
+
+    .scrabble-grid .cell {
+        min-width: 25px;
+        min-height: 25px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+
+    .letter-rack {
+        gap: 0.5rem;
+    }
+
+    .letter-tile {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .letter-tile .letter-score {
+        position: absolute;
+        font-size: 0.7rem;
+        margin-bottom: 5px;
+        margin-left: -0.7rem;
+        z-index: 99999;
+    }
+
+    .game-btn {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    /*========== index.html ==========*/
+    .title {
+        font-size: 5rem;
+        margin: 0;
+    }
+
+    .description {
+        font-size: 2rem;
+        margin: 1rem;
+        margin-bottom: 4rem;
+    }
+
+    .classic-mode,
+    .scrabble-mode {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin: 1rem;
+        width: 300px;
+        height: 60px;
+    }
+
+    .menu-btn {
+        position: relative;
+        top: 2rem;
+        left: 0;
+        margin: 0;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-dropdown {
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        margin-top: 0.5rem;
+        max-width: 120px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    /* ========== categories_cw.html ========== */
+    .header-wrapper {
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0;
+    }
+
+    .back-btn {
+        top: 5rem;
+        left: 25%;
+    }
+
+    .category-title {
+        margin-left: 3rem;
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    .category-list {
+        margin-top: 2rem !important;
+        left: 0.5rem;
+        margin: 0 auto;
+        display: grid;
+        width: 600px;
+        grid-template-columns: repeat(2, 300px);
+        justify-content: center;
+    }
+
+    .category-btn {
+        width: 250px;
+        height: 150px;
+        font-size: 1.5rem;
+        margin: 0.5rem;
+        gap: 3rem !important;
+    }
+
+    .category-btn i {
+        font-size: 4rem;
+        margin-bottom: 5px;
+    }
+
+    /* In game */
+    .game-container-classic-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .game-area-classic-container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .classic-board {
+        position: relative;
+        order: 1;
+        top: 0;
+        width: 600px;
+        height: 600px;
+    }
+
+    .classic-board table {
+        width: 100%;
+        height: 550px;
+        margin: 0 auto;
+    }
+
+    .classic-board td {
+        width: 30px;     
+        height: 30px;    
+        padding: 0;
+        position: relative;
+        font-size: 0.8rem;  
+    }
+
+    .box2 {
+        width: 25px;     
+        height: 25px;    
+    }
+
+    .box2[data-clue]::before {
+        font-size: 0.7rem; 
+    }
+
+    .box2 span {
+        font-size: 0.9rem; 
+    }
+
+    .heading {
+        position: relative;
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 1rem;
+        background: #d9bab0;
+    }
+
+    .heading .timer {
+        font-size: 2rem !important;
+        padding: 0.5rem;
+        min-width: auto;
+        margin: 0;
+    }
+
+    .heading h1 {
+        font-size: 2rem !important;
+        padding: 0.3rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .clues-container {
+        order: 2;
+        width: 500px;
+        margin-top: 0;
+    }
+
+    .hint-box-wrapper {
+        width: 100%;
+    }
+
+    .hint-box {
+        width: 100%;
+        height: 400px;
+    }
+
+    .button-container {
+        width: 100%;
+        .clearAll-btn,
+        .checkans-btn {
+            width: 800px;
+            height: 50px;
+        }
+    }
+
+    /* ========== scrabblemode.html ========== */
+    #scrabbleModeContainer {
+        gap: 0.5rem;
+    }
+
+    .scrabble-title {
+        font-size: 4.5rem !important;
+        margin-bottom: 2rem;
+    }
+
+    .scrabbleSingle-mode, 
+    .scrabbleMulti-mode {
+        font-size: 1.8rem;
+        padding: 1rem;
+        width: 350px;
+        height: 70px;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .back-btn2 {
+        font-size: 1.8rem;
+        width: 350px;
+        height: 70px;
+        margin-top: 0.5rem;
+    }
+
+    /* ========== scrabbleSingle.html ========== */
+    .game-container-scrabble-container {
+        display: flex;
+        justify-content: flex-start;
+        padding: 2rem;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .game-area-scrabble-container {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .grid-wrapper {
+        width: 600px;
+        height: 600px;
+        margin-left: 2rem;
+    }
+
+    .rack-container {
+        position: relative;
+        width: 600px;
+        margin-left: 2rem;
+        top: 2rem;
+    }
+
+    .action-buttons {
+        position: relative;
+        width: 600px;
+        margin-left: 2rem;
+        top: 3rem;
+    }
+
+    /* Right side content */
+    .player-info {
+        position: fixed;
+        right: 10rem;
+        top: 2rem;
+        max-width: 600px;
+        transform: none;
+        margin-right: 1rem;
+    }
+
+    .tile-bags-container {
+        position: fixed;
+        right: 10rem; 
+        top: 200px;
+        max-width: 600px;
+        margin-right: 1rem;
+    }
+
+    /* Adjust player info content */
+    .player-container {
+        gap: 1px;
+    }
+
+    .player, .bot {
+        padding: 0.8rem;
+        max-width: 200px;
+
+    }
+
+    /* Maintain aspect ratio and size for all elements */
+    .scrabble-grid .cell {
+        min-width: 35px;
+        min-height: 35px;
+    }
+
+    .letter-tile {
+        width: 50px;
+        height: 50px;
+    }
+
+    .game-btn {
+        height: 40px;
+        min-width: 80px;
+    }
+}

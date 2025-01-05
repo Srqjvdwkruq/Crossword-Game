@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scrabble Crossword Game - Challenge yourself in this word-building game">
+    <title>Scrabble</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/scrabble.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Game Container -->
+    <div class="game-container-scrabble-container">
+        <!-- Game Area -->
+        <div class="game-area-scrabble-container">
+
+            <!-- Menu Button -->
+            <div id="menuBtn" class="menu-container">
+                <button class="menu-btn" aria-label="Menu"><i class='bx bx-menu'></i></button>
+                <!-- Menu Dropdown -->
+                <div class="menu-dropdown">
+                    <button id="continueBtn">Continue</button>
+                    <button id="quitBtn">Quit</button>
+                </div>
+            </div>
+            
+            <!--  div wrapper for grid -->
+            <div class="grid-wrapper">
+                <div class="scrabble-grid" role="grid" aria-label="Scrabble Crossword Grid"></div>
+            </div>
+            
+            <!-- Letter Rack -->
+            <div class="rack-container">
+                <button id="shuffleBtn" class="rack-btn tooltip" aria-label="Shuffle Letters">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                
+                <!-- Letters -->
+                <div class="letter-rack" id="letter-rack" role="list" aria-label="Letter Rack"></div>
+
+                <button id="undoBtn" class="rack-btn tooltip" aria-label="Return Letters">
+                    <i class="fa-solid fa-arrows-down-to-line"></i>
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="resignBtn" class="game-btn" aria-label="Resign Game">Resign</button>
+                <button id="skipBtn" class="game-btn" aria-label="Skip Turn">Skip</button>
+                <button id="swapBtn" class="game-btn" aria-label="Swap Letters">Swap</button>
+                <button id="submitBtn" class="game-btn primary" aria-label="Submit Word">Submit</button>
+            </div>
+        </div>
+
+        <!-- Player Info -->
+        <div class="player-info">
+            <div class="player-container">
+                <div class="player-section">
+                    <div class="player">
+                        <h2>Player</h2>
+                        <div class="stats">
+                            <span id="playerScore" aria-live="polite">0</span>
+                            <span id="playerTime" aria-live="polite">15:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div class="bot-section">
+                    <div class="bot">
+                        <h2>Bot</h2>
+                        <div class="stats">
+                            <div id="bot-rack" class="letter-rack" style="display: none;"></div>
+                            <span id="botScore" aria-live="polite">0</span>
+                            <span id="botTime" aria-live="polite">15:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tile Bags - Moved out of player-info -->
+        <div class="tile-bags-container">
+            <div class="tile-bags">
+                <div class="tile-info">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Tile Bags: <span id="totalTiles">0</span></span>
+                </div>
+                <div class="letter-stats">
+                    <div class="vowels">
+                        <span>Vowels: <span id="vowelsCount">42</span></span>
+                    </div>
+                    <div class="consonants">
+                        <span>Consonants: <span id="consonantsCount">56</span></span>
+                    </div>
+                </div>
+                <div id="available-letters" class="available-letters"></div>
+            </div>
+        </div>
+
+        <!-- Add Score Screen -->
+        <div class="score-screen">
+            <div class="score-content">
+                <!-- Content will be dynamically inserted by JavaScript -->
+            </div>
+        </div>
+
+        <!--Confirmation Box --> 
+        <div id="confirmBox" class="confirm-box">
+            <div class="confirm-content">
+                <p id="confirmMessage"></p>
+                <div class="confirm-buttons">
+                    <button id="confirmYes" class="confirm-btn yes">YES</button>
+                    <button id="confirmNo" class="confirm-btn no">NO</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Swap letters Modal--> 
+        <div id="swapModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Swap Letters</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Select letters to swap</p>
+                    <div id="swapLettersContainer" class="swap-letters"></div>
+                    <div class="modal-buttons">
+                        <button id="swapSelectedBtn" class="action-btn">Swap & Pass</button>
+                        <button id="cancelSwapBtn" class="action-btn cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/game.js"></script>
+    <script src="/assets/js/scrabble/scrabbleMain.js" type="module"></script>
+    <script src="/assets/js/scrabble/scrabbleBot.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobby</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/scrabble.css">
+    <link rel="stylesheet" href="assets/css/room.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="game-container">
+        <div class="room-info">
+            <h2>Game Room: <span id="roomIdDisplay"></span></h2>
+            <div class="players-info">
+                <div class="player-slot">
+                    <h3>Creator : <span id="creator"></span></h3>
+                    <div class="status ready">Ready</div>
+                </div>
+                <div class="player-slot">
+                    <h3>Joiner : <span id="joiner"></span></h3>
+                    <div class="status">Not Ready</div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button id="startGameBtn" class="game-btn primary" disabled>Start Game</button>
+                <button id="leaveRoomBtn" class="game-btn">Leave Room</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-animation"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load room data
+            let roomData = JSON.parse(localStorage.getItem('roomData') || '{}');
+            
+            function updatePlayersInfo(data) {
+                console.log('Updating UI with data:', data); // Debug log
+
+                const creator = document.getElementById('creator');
+                const joiner = document.getElementById('joiner');
+                const joinerStatus = document.querySelector('.player-slot:nth-child(2) .status');
+                const startGameBtn = document.getElementById('startGameBtn');
+                const roomIdDisplay = document.getElementById('roomIdDisplay');
+
+                // กำหนดค่าที่ถูกต้องสำหรับผู้เล่นตามบทบาท
+                const updatedData = {
+                    ...roomData,                           // รักษาข้อมูลเดิมทั้งหมด
+                    roomId: data.roomId || roomData.roomId // อัพเดทเฉพาะ roomId ถ้ามี
+                };
+
+                // อัพเดทชื่อผู้เล่นตามบทบาท
+                if (data.type === 'PLAYER_JOINED') {
+                    // ถ้าเป็นการ join ใหม่ ให้อัพเดทเฉพาะ player2
+                    updatedData.joiner = data.playerData?.joiner || 'Waiting...';
+                } else {
+                    // กรณีโหลดข้อมูลครั้งแรกหรือกรณีอื่นๆ
+                    if (roomData.creator === data.creator) {
+                        // ถ้าเป็น creator ให้เก็บชื่อไว้ที่ player1
+                        updatedData.creator = data.creator;
+                        updatedData.joiner = data.joiner || 'Waiting...';
+                    } else if (roomData.creator === data.joiner) {
+                        // ถ้าเป็น creator ให้เก็บชื่อไว้ที่ player2
+                        updatedData.joiner = data.joiner;
+                        updatedData.creator = data.creator || 'Waiting...';
+                    }
+                }
+
+                // อัพเดท UI
+                creator.textContent = updatedData.creator;
+                joiner.textContent = updatedData.joiner;
+                roomIdDisplay.textContent = updatedData.roomId;
+
+                // อัพเดทสถานะ player 2
+                if (updatedData.joiner && updatedData.joiner !== 'Waiting...') {
+                    joinerStatus.classList.add('ready');
+                    joinerStatus.textContent = 'Ready';
+                } else {
+                    joinerStatus.classList.remove('ready');
+                    joinerStatus.textContent = 'Not Ready';
+                }
+
+                // จัดการปุ่ม Start
+                const isCreator = updatedData.creator === updatedData.creator;
+                const bothPlayersPresent = updatedData.creator !== 'Waiting...' && 
+                                         updatedData.joiner !== 'Waiting...';
+
+                startGameBtn.disabled = !bothPlayersPresent;
+                startGameBtn.style.display = isCreator ? 'block' : 'none';
+
+                // บันทึกข้อมูลใหม่
+                roomData = updatedData;
+                localStorage.setItem('roomData', JSON.stringify(updatedData));
+
+                console.log('UI Updated with:', updatedData);
+            }
+
+            // Initial update
+            updatePlayersInfo(roomData);
+
+            // WebSocket message handler
+            if (window.roomManager && window.roomManager.ws) {
+                window.roomManager.ws.addEventListener('message', (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        console.log('WebSocket message received:', data);
+
+                        if (data.type === 'PLAYER_JOINED' && data.playerData) {
+                            updatePlayersInfo(data.playerData);
+                        } else if (data.type === 'PLAYER_DISCONNECTED') {
+                            updatePlayersInfo({
+                                ...roomData,
+                                joiner: 'Waiting...'
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Error handling WebSocket message:', error);
+                    }
+                });
+            }
+
+            // Handle start game
+            document.getElementById('startGameBtn').addEventListener('click', () => {
+                // ส่งสัญญาณเริ่มเกมไปยังอีกฝ่าย
+                window.roomManager.ws.send(JSON.stringify({
+                    type: 'START_GAME',
+                    roomId: roomData.roomId
+                }));
+                // ไปยังหน้าเกม
+                window.location.href = 'multisb_cw.html';
+            });
+
+            // Handle leave room
+            document.getElementById('leaveRoomBtn').addEventListener('click', () => {
+                localStorage.removeItem('roomData');
+                window.location.href = 'room.html';
+            });
+        });
+    </script>
+    
+    
+    <script src="assets/js/game.js"></script>
+    <script src="assets/js/scrabble/room.js" type="module"></script>
+</body>
+</html>

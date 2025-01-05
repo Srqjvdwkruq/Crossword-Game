@@ -1,0 +1,183 @@
+/* ส่วนของหน้า room.html */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.room-containers {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#createRoomContainer,
+#joinRoomContainer {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    min-width: 300px;
+}
+
+/* ส่วนของหน้า lobby.html */
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 3rem;
+}
+
+.room-info {
+    margin: 0;
+    top: 75px; 
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.players-info {
+    margin: 3rem 0;
+}
+
+.player-slot {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #f5f5f5;
+    border-radius: 7.5px;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.status {
+    display: inline-block;
+    padding: 0.45rem 1.5rem;
+    border-radius: 22.5px;
+    background: #f86060;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.status.ready {
+    background: #9CBB98;
+}
+
+#roomIdDisplay {
+    font-family: 'Jua' serif;
+    font-size: 1.8em;
+    color: #2196F3;
+}
+
+/* Button container */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.game-btn {
+    margin: 0;
+    min-width: 150px;
+    padding: 12px 25px;
+}
+
+#connection-status {
+    z-index: 1000;
+    font-size: 21px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+#connection-status:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+input[placeholder="Room ID"] {
+    background-color: #f5f5f5;
+    font-family: monospace;
+    font-size: 1.8em;
+    text-align: center;
+    letter-spacing: 3px;
+    transition: background-color 0.3s ease;
+}
+
+input[placeholder="Room ID (4 digits)"] {
+    background-color: #f5f5f5;
+    font-family: monospace;
+    font-size: 2.25em;
+    text-align: center;
+    letter-spacing: 12px;
+    padding: 12px;
+    width: 210px;
+    margin: 15px auto;
+}
+
+.room-id-info {
+    font-size: 1.2em;
+    color: #666;
+    margin: 7.5px 0 22.5px 0;
+}
+
+.create-btn {
+    margin-top: 1.5rem;
+}
+
+/* Animation for Room ID highlight */
+@keyframes highlightRoomId {
+    0% { background-color: #e8f5e9; }
+    100% { background-color: transparent; }
+}
+
+input[placeholder="Room ID"].highlight {
+    animation: highlightRoomId 1s ease;
+}
+
+/* Add input validation styles */
+input[pattern]:invalid {
+    border-color: #ff4444;
+}
+
+input[pattern]:valid {
+    border-color: #00C851;
+}
+
+/* เพิ่ม styles สำหรับ disconnected alert */
+#disconnected-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+}
+
+#disconnected-alert .alert-content {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}

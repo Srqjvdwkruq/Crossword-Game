@@ -1,0 +1,119 @@
+/* Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.falling-letter {
+    position: absolute;
+    top: -50px;
+    color: rgba(51, 51, 51, 0.149);
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    animation: fallRotate var(--fall-duration, 10s) linear infinite;
+    animation-delay: var(--fall-delay, 0s);
+    font-size: var(--font-size, 24px);
+    font: inherit;
+    will-change: transform;
+    transform-origin: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fallRotate {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0.2;
+    }
+    20% {
+        opacity: 0.25;
+    }
+    80% {
+        opacity: 0.25;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(1080deg);
+        opacity: 0;
+    }
+}
+
+/* Letter Sizes and Durations */
+.falling-letter.small { 
+    font-size: 40px;
+    --fall-duration: 14s;  
+}
+
+.falling-letter.medium { 
+    font-size: 60px;
+    --fall-duration: 12s;
+}
+
+.falling-letter.large { 
+    font-size: 80px;
+    --fall-duration: 10s;
+}
+
+/* Make sure animation container is above other content */
+#container.start-screen {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    0% { 
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.pop-in {
+    animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Transition Classes */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.transition-transform {
+    transition: transform 0.3s ease;
+}
+
+.transition-opacity {
+    transition: opacity 0.3s ease;
+} 

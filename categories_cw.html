@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Category</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/classic.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Category Container -->
+    <div id="categoryContainer" class="category-container">
+        <!-- Back Button -->
+         <div class="header-wrapper">
+            <button id="backBtn" class="back-btn"><i class='bx bx-arrow-back'></i></button>
+            <h1 class="category-title">Select Category</h1>
+         </div>
+
+        <!-- Category Buttons -->
+        <div class="category-list">
+            <button id="animalBtn" class="category-btn" data-category="Animal">
+                <i class="fa-solid fa-paw"></i>
+                <span>Animals</span>
+            </button>
+            <button id="vegetableBtn" class="category-btn" data-category="Vegetable">
+                <i class="fa-solid fa-carrot"></i>
+                <span>Vegetables</span>
+            </button>
+            <button id="fruitBtn" class="category-btn" data-category="Fruit">
+                <i class="fa-solid fa-apple-whole"></i>
+                <span>Fruits</span>
+            </button>
+            <button id="clothingBtn" class="category-btn" data-category="Clothing">
+                <i class="fa-solid fa-shirt"></i>
+                <span>Clothing</span>
+            </button>
+            <button id="schoolsuppliesBtn" class="category-btn" data-category="School Supplies">
+                <i class="fa-solid fa-pencil"></i>
+                <span>School Supplies</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+    
+    
+    <script src="/assets/js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Room</title>
+    <!-- แก้ไข path ของ CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/createRoom.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper"> 
+        <div class="content-container">
+            <div class="header-container">
+                <button id="backBtn3" class="back-btn3"><i class='bx bx-arrow-back'></i></button>
+                <h1>Game Room</h1>
+            </div>
+            <div class="room-containers">
+                <div id="createRoomContainer">
+                    <form action="#" onsubmit="return false;">
+                        <h1 class="createRoom-title">Create Room</h1>
+                        <input id="creatorName" type="text" placeholder="Player Name" required>
+                        <input type="text" 
+                               placeholder="Room ID (4 digits)" 
+                               pattern="[0-9]{4}" 
+                               required
+                               maxlength="4"
+                               readonly
+                               title="Auto-generated room ID">
+                        <button type="submit" id="createBtn" class="create-btn">Create</button>
+                    </form>
+                </div>
+
+                <div id="joinRoomContainer">
+                    <form action="">
+                        <h1 class="joinRoom-title">Join Room</h1>
+                        <input id="joinerName" type="text" placeholder="Player Name" required>
+                        <input type="text" 
+                               placeholder="Room ID (4 digits)" 
+                               pattern="[0-9]{4}" 
+                               required
+                               maxlength="4"
+                               title="Please enter 4 digits">
+                        <button id="joinBtn" class="join-btn">Join</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+
+    <!-- แก้ไข path ของ JavaScript -->
+    <script src="assets/js/game.js"></script>
+    <script src="assets/js/scrabble/room.js" type="module"></script>
+</body>
+</html>
