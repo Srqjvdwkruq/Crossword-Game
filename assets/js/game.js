@@ -31,10 +31,12 @@ const utils = {
         }
     },
 
-    setupCategoryButton: (button, category) => {
+    setupCategoryButton: (button) => {
         if (button) {
-            button.addEventListener('click', () => 
-                utils.redirect(`../pages/${category}.html`));
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                utils.redirect(`./pages/${category}.html`);
+            });
         }
     }
 };
@@ -255,9 +257,9 @@ document.addEventListener('DOMContentLoaded', () => {
     utils.handleBackNavigation(elements.buttons.back3, isInPagesDir ? '../scrabblemode.html' : './scrabblemode.html');
     
     // Setup category buttons
-    const categories = elements.buttons.categories;
-    Object.entries(categories).forEach(([category, button]) => {
-        utils.setupCategoryButton(button, category);
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    categoryButtons.forEach(button => {
+        utils.setupCategoryButton(button);
     });
     
     // Setup home screen animations
